@@ -1,0 +1,9 @@
+flowchart TD
+    UI["Next.js interface"] --> API["Authenticated route handlers"]
+    API --> SQL["PostgreSQL: workflow state"]
+    API --> DOC["MongoDB: profiles and audit"]
+    SQL --> QUEUE["SQL transactional outbox"]
+    QUEUE --> WORKER["Idempotent retry worker"]
+    WORKER --> DOC
+    WORKER --> DONE["Mark delivered; clear payload"]
+    DONE --> QUEUE

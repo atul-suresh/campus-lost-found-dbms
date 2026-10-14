@@ -1,0 +1,67 @@
+erDiagram
+    USERS ||--o{ SESSIONS : authenticates
+    USERS ||--o{ ITEMS : reports
+    CATEGORIES ||--o{ ITEMS : categorizes
+    LOCATIONS ||--o{ ITEMS : locates
+    ITEMS ||--o{ CLAIMS : receives
+    ITEMS o|--o{ CLAIMS : linked_lost_report
+    USERS ||--o{ CLAIMS : claimant
+    USERS o|--o{ CLAIMS : reviewer
+    CLAIMS ||--o| HANDOVERS : receipt
+    ITEMS ||--o| HANDOVERS : returned_item
+    USERS ||--o{ HANDOVERS : staff
+    USERS {
+        uuid id PK
+        varchar name
+        varchar srn UK
+        varchar email UK
+        text password_hash
+        varchar role
+        timestamptz created_at
+    }
+    SESSIONS {
+        char token_hash PK
+        uuid user_id FK
+        timestamptz expires_at
+        timestamptz created_at
+    }
+    CATEGORIES {
+        serial id PK
+        varchar name UK
+    }
+    LOCATIONS {
+        serial id PK
+        varchar name UK
+    }
+    ITEMS {
+        uuid id PK
+        uuid reporter_id FK
+        varchar kind
+        varchar title
+        varchar description
+        int category_id FK
+        int location_id FK
+        date event_date
+        varchar color
+        varchar status
+        text reference_code UK
+        tsvector search_vector
+    }
+    CLAIMS {
+        uuid id PK
+        uuid item_id FK
+        uuid claimant_id FK
+        uuid linked_lost_id FK
+        varchar statement
+        varchar status
+        uuid reviewer_id FK
+        varchar review_note
+    }
+    HANDOVERS {
+        uuid id PK
+        uuid claim_id FK,UK
+        uuid item_id FK,UK
+        uuid staff_id FK
+        varchar receipt_note
+        timestamptz completed_at
+    }

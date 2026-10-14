@@ -1,0 +1,13 @@
+stateDiagram-v2
+    [*] --> Open
+    Open --> Reserved: Staff approves ownership claim
+    Reserved --> Returned: Staff confirms handover receipt
+    Returned --> [*]
+    note right of Reserved
+        Other pending claims are rejected.
+        Unique index permits one owner.
+    end note
+    note right of Returned
+        Linked lost report closes atomically.
+        Claim becomes handed_over.
+    end note

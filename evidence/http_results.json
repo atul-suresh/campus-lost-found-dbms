@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-10-13T15:36:59.147Z",
+  "results": [
+    {
+      "name": "anonymous API access rejected",
+      "status": "passed"
+    },
+    {
+      "name": "cross-origin login rejected",
+      "status": "passed"
+    },
+    {
+      "name": "student signs in with protected cookie",
+      "status": "passed"
+    },
+    {
+      "name": "dashboard and directory use database data",
+      "status": "passed"
+    },
+    {
+      "name": "student denied staff synchronization route",
+      "status": "passed"
+    },
+    {
+      "name": "student denied staff audit route",
+      "status": "passed"
+    },
+    {
+      "name": "invalid report request rejected",
+      "status": "passed"
+    },
+    {
+      "name": "SQL-looking search stays a harmless search",
+      "status": "passed"
+    },
+    {
+      "name": "register ignores an attempted staff role",
+      "status": "passed"
+    },
+    {
+      "name": "logout revokes the original session",
+      "status": "passed"
+    },
+    {
+      "name": "staff can access aggregation and diagnostics",
+      "status": "passed"
+    },
+    {
+      "name": "staff synchronization returns pending count",
+      "status": "passed"
+    },
+    {
+      "name": "HTTP found report persists through the API",
+      "status": "passed"
+    },
+    {
+      "name": "HTTP private profile hides the staff identifying clue from students",
+      "status": "passed"
+    },
+    {
+      "name": "HTTP lost report obtains matching candidates",
+      "status": "passed"
+    },
+    {
+      "name": "HTTP ownership claim accepts a valid linked lost report",
+      "status": "passed"
+    },
+    {
+      "name": "HTTP student review attempt is denied",
+      "status": "passed"
+    },
+    {
+      "name": "HTTP staff approves the ownership claim",
+      "status": "passed"
+    },
+    {
+      "name": "HTTP handover returns found item and closes lost report",
+      "status": "passed"
+    },
+    {
+      "name": "production page and security headers served",
+      "status": "passed"
+    }
+  ],
+  "browser_qa": "Not performed in this environment."
+}

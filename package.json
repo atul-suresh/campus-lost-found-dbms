@@ -1,0 +1,25 @@
+{
+  "name": "campus-lost-found",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0",
+    "db:setup": "node --env-file=.env scripts/setup.mjs",
+    "db:sync": "node --env-file=.env scripts/sync.mjs",
+    "test": "node --env-file=.env --test --test-reporter=tap --test-concurrency=1 tests/integration.test.mjs",
+    "demo:queries": "node --env-file=.env scripts/queries.mjs",
+    "test:http": "node --env-file=.env tests/http.mjs"
+  },
+  "dependencies": {
+    "next": "16.4.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "pg": "8.16.3",
+    "mongodb": "6.20.0"
+  },
+  "engines": {
+    "node": ">=20.9"
+  }
+}

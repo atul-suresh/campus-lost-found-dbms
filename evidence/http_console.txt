@@ -1,0 +1,28 @@
+▲ Next.js 16.4.0
+
+- Local:         http://127.0.0.1:3100
+- Network:       http://127.0.0.1:3100
+✓ Ready in 205ms
+
+✓ Running next.config.mjs took 27ms
+
+PASS anonymous API access rejected
+PASS cross-origin login rejected
+PASS student signs in with protected cookie
+PASS dashboard and directory use database data
+PASS student denied staff synchronization route
+PASS student denied staff audit route
+PASS invalid report request rejected
+PASS SQL-looking search stays a harmless search
+PASS register ignores an attempted staff role
+PASS logout revokes the original session
+PASS staff can access aggregation and diagnostics
+PASS staff synchronization returns pending count
+PASS HTTP found report persists through the API
+PASS HTTP private profile hides the staff identifying clue from students
+PASS HTTP lost report obtains matching candidates
+PASS HTTP ownership claim accepts a valid linked lost report
+PASS HTTP student review attempt is denied
+PASS HTTP staff approves the ownership claim
+PASS HTTP handover returns found item and closes lost report
+20 HTTP checks passed

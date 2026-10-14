@@ -1,0 +1,19 @@
+digraph Architecture {
+ graph [rankdir=TB,bgcolor="transparent",nodesep=.55,ranksep=.5,pad=.2];
+ node [shape=box,style="rounded,filled",fillcolor="#f0f5e6",color="#b9cbae",fontname="Arial",fontsize=12,margin=".18,.14",fontcolor="#234e3a"];
+ edge [fontname="Arial",fontsize=9,color="#829778",fontcolor="#6a805f"];
+ ui [label="Next.js interface\nStudent and staff screens"];
+ api [label="Backend route handlers\nSession + authorization + validation"];
+ sql [label="PostgreSQL\nReports, claims, users, receipts"];
+ mongo [label="MongoDB\nItem profiles + audit history"];
+ outbox [label="Transactional outbox\nCommitted with SQL workflow"];
+ worker [label="Retry dispatcher\nAdvisory lock + unique event IDs"];
+ ui -> api [label="JSON API"];
+ api -> sql [label="parameterized SQL"];
+ api -> mongo [label="authorized detail / audit reads"];
+ sql -> outbox [label="triggers and explicit profile events"];
+ outbox -> worker [label="pending events"];
+ worker -> mongo [label="idempotent writes"];
+ worker -> outbox [label="mark delivered",style=dashed];
+ {rank=same;sql;mongo;}
+}

@@ -1,0 +1,24 @@
+digraph ER {
+ graph [rankdir=TB,bgcolor="transparent",nodesep=0.45,ranksep=0.65,pad=0.2];
+ node [shape=record,fontname="Arial",fontsize=10,style="rounded,filled",fillcolor="#f4f7ed",color="#bdcdb4",fontcolor="#234e3a",margin="0.12,0.10"];
+ edge [fontname="Arial",fontsize=9,color="#8b9f84",fontcolor="#647d57",arrowsize=.6];
+ users [label="{USERS|PK id: uuid\lUK srn, email\lname, password_hash, role\lcreated_at\l}"];
+ categories [label="{CATEGORIES|PK id: serial\lUK name\l}"];
+ locations [label="{LOCATIONS|PK id: serial\lUK name\l}"];
+ sessions [label="{SESSIONS|PK token_hash\lFK user_id\lexpires_at, created_at\l}"];
+ items [label="{ITEMS|PK id: uuid\lFK reporter_id\lFK category_id, location_id\lUK reference_code\lkind, title, description\lcolor, event_date, status\lsearch_vector, timestamps\l}"];
+ claims [label="{CLAIMS|PK id: uuid\lFK item_id, linked_lost_id\lFK claimant_id, reviewer_id\lstatement, status\lreview_note, timestamps\l}"];
+ handovers [label="{HANDOVERS|PK id: uuid\lFK/UK claim_id, item_id\lFK staff_id\lreceipt_note, completed_at\l}"];
+ {rank=same; users;categories;locations;}
+ {rank=same;sessions;items;}
+ users -> items [label="reports 1:N"];
+ users -> sessions [label="1:N"];
+ categories -> items [label="1:N"];
+ locations -> items [label="1:N"];
+ items -> claims [label="found report 1:N"];
+ items -> claims [label="lost link 0..1:N",style=dashed];
+ users -> claims [label="claimant / reviewer",style=dashed];
+ claims -> handovers [label="1:0..1"];
+ items -> handovers [label="1:0..1",style=dashed];
+ users -> handovers [label="staff",style=dashed];
+}

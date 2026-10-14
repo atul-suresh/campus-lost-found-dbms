@@ -1,0 +1,197 @@
+TAP version 13
+# Seeded 24 synthetic item reports and 4 demo accounts.
+# Subtest: 01 SQL and MongoDB engines execute real queries
+ok 1 - 01 SQL and MongoDB engines execute real queries
+  ---
+  duration_ms: 1184.522937
+  type: 'test'
+  ...
+# Subtest: 02 schema and seed reruns are idempotent
+ok 2 - 02 schema and seed reruns are idempotent
+  ---
+  duration_ms: 376.192055
+  type: 'test'
+  ...
+# Subtest: 03 password authentication creates an expiring session
+ok 3 - 03 password authentication creates an expiring session
+  ---
+  duration_ms: 109.200523
+  type: 'test'
+  ...
+# Subtest: 04 bad passwords are rejected and rate limited
+ok 4 - 04 bad passwords are rejected and rate limited
+  ---
+  duration_ms: 368.593983
+  type: 'test'
+  ...
+# Subtest: 05 report insert and flexible MongoDB profile persist
+ok 5 - 05 report insert and flexible MongoDB profile persist
+  ---
+  duration_ms: 30.693809
+  type: 'test'
+  ...
+# Subtest: 06 private identifying details hidden from other students
+ok 6 - 06 private identifying details hidden from other students
+  ---
+  duration_ms: 23.620596
+  type: 'test'
+  ...
+# Subtest: 07 search and filters return matching reports
+ok 7 - 07 search and filters return matching reports
+  ---
+  duration_ms: 13.965897
+  type: 'test'
+  ...
+# Subtest: 08 invalid dates and short descriptions rejected
+ok 8 - 08 invalid dates and short descriptions rejected
+  ---
+  duration_ms: 5.79745
+  type: 'test'
+  ...
+# Subtest: 09 SQL enforces category foreign keys and dates
+ok 9 - 09 SQL enforces category foreign keys and dates
+  ---
+  duration_ms: 23.433022
+  type: 'test'
+  ...
+# Subtest: 10 reporter can update; another student cannot
+ok 10 - 10 reporter can update; another student cannot
+  ---
+  duration_ms: 59.964009
+  type: 'test'
+  ...
+# Subtest: 11 report deletion removes the MongoDB profile
+ok 11 - 11 report deletion removes the MongoDB profile
+  ---
+  duration_ms: 46.146474
+  type: 'test'
+  ...
+# Subtest: 12 linked lost report and ranked matching work
+ok 12 - 12 linked lost report and ranked matching work
+  ---
+  duration_ms: 48.692101
+  type: 'test'
+  ...
+# Subtest: 13 finder cannot claim own report
+ok 13 - 13 finder cannot claim own report
+  ---
+  duration_ms: 25.025983
+  type: 'test'
+  ...
+# Subtest: 14 duplicate active claim is blocked by partial unique index
+ok 14 - 14 duplicate active claim is blocked by partial unique index
+  ---
+  duration_ms: 37.062744
+  type: 'test'
+  ...
+# Subtest: 15 a linked lost report must belong to the claimant
+ok 15 - 15 a linked lost report must belong to the claimant
+  ---
+  duration_ms: 31.747379
+  type: 'test'
+  ...
+# Subtest: 16 claim evidence is visible only to claimant and staff
+ok 16 - 16 claim evidence is visible only to claimant and staff
+  ---
+  duration_ms: 46.244886
+  type: 'test'
+  ...
+# Subtest: 17 student cannot approve or hand over claims
+ok 17 - 17 student cannot approve or hand over claims
+  ---
+  duration_ms: 29.039687
+  type: 'test'
+  ...
+# Subtest: 18 approving one claim rejects competing pending claims
+ok 18 - 18 approving one claim rejects competing pending claims
+  ---
+  duration_ms: 85.556549
+  type: 'test'
+  ...
+# Subtest: 19 verified handover atomically closes the linked lost report
+ok 19 - 19 verified handover atomically closes the linked lost report
+  ---
+  duration_ms: 111.388854
+  type: 'test'
+  ...
+# Subtest: 20 handover before approval is rejected
+ok 20 - 20 handover before approval is rejected
+  ---
+  duration_ms: 70.067366
+  type: 'test'
+  ...
+# Subtest: 21 rejection leaves the found item open
+ok 21 - 21 rejection leaves the found item open
+  ---
+  duration_ms: 40.528827
+  type: 'test'
+  ...
+# Subtest: 22 withdrawal permitted only for the owner of a pending claim
+ok 22 - 22 withdrawal permitted only for the owner of a pending claim
+  ---
+  duration_ms: 47.73748
+  type: 'test'
+  ...
+# Subtest: 23 reports with claim history cannot be deleted
+ok 23 - 23 reports with claim history cannot be deleted
+  ---
+  duration_ms: 36.182731
+  type: 'test'
+  ...
+# Subtest: 24 a failed transaction rolls back report and outbox together
+ok 24 - 24 a failed transaction rolls back report and outbox together
+  ---
+  duration_ms: 4.784731
+  type: 'test'
+  ...
+# Subtest: 25 deferred trigger blocks an inconsistent reserved state
+ok 25 - 25 deferred trigger blocks an inconsistent reserved state
+  ---
+  duration_ms: 33.635912
+  type: 'test'
+  ...
+# Subtest: 26 MongoDB validation rejects malformed documents
+ok 26 - 26 MongoDB validation rejects malformed documents
+  ---
+  duration_ms: 5.869363
+  type: 'test'
+  ...
+# Subtest: 27 outbox retry is idempotent and removes delivered payloads
+ok 27 - 27 outbox retry is idempotent and removes delivered payloads
+  ---
+  duration_ms: 75.310085
+  type: 'test'
+  ...
+# Subtest: 28 MongoDB failure retains SQL event and subsequent recovery delivers it
+ok 28 - 28 MongoDB failure retains SQL event and subsequent recovery delivers it
+  ---
+  duration_ms: 60.511347
+  type: 'test'
+  ...
+# Subtest: 29 MongoDB aggregation and SQL views power staff dashboard
+ok 29 - 29 MongoDB aggregation and SQL views power staff dashboard
+  ---
+  duration_ms: 12.402632
+  type: 'test'
+  ...
+# Subtest: 30 important JOIN/GROUP BY/HAVING/subquery/DDL examples execute
+ok 30 - 30 important JOIN/GROUP BY/HAVING/subquery/DDL examples execute
+  ---
+  duration_ms: 37.907312
+  type: 'test'
+  ...
+# Subtest: 31 competing approvals preserve exactly one owner under concurrency
+ok 31 - 31 competing approvals preserve exactly one owner under concurrency # SKIP PGlite is single-connection; rerun on native PostgreSQL for concurrency proof
+  ---
+  duration_ms: 0.197083
+  type: 'test'
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 1
+# todo 0
+# duration_ms 3390.762691

@@ -1,0 +1,612 @@
+{
+  "generated_at": "2026-10-13T15:36:59.925Z",
+  "sql_engine": "pglite",
+  "postgresql_version": "PostgreSQL 18.6 (PGlite 0.5.9) on wasm32-unknown-emscripten, compiled by emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.1.74 (1092ec30a3fb1d46b1782ff1b4db5094d3d06ae5), 32-bit",
+  "mongodb_version": "8.0.15",
+  "columns": [
+    {
+      "table_name": "categories",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": "nextval('categories_id_seq'::regclass)"
+    },
+    {
+      "table_name": "categories",
+      "column_name": "name",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "claims",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": "gen_random_uuid()"
+    },
+    {
+      "table_name": "claims",
+      "column_name": "item_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "claims",
+      "column_name": "claimant_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "claims",
+      "column_name": "linked_lost_id",
+      "data_type": "uuid",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "claims",
+      "column_name": "statement",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "claims",
+      "column_name": "status",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": "'pending'::character varying"
+    },
+    {
+      "table_name": "claims",
+      "column_name": "reviewer_id",
+      "data_type": "uuid",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "claims",
+      "column_name": "review_note",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": "''::character varying"
+    },
+    {
+      "table_name": "claims",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "table_name": "claims",
+      "column_name": "reviewed_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "handovers",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": "gen_random_uuid()"
+    },
+    {
+      "table_name": "handovers",
+      "column_name": "claim_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "handovers",
+      "column_name": "item_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "handovers",
+      "column_name": "staff_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "handovers",
+      "column_name": "receipt_note",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "handovers",
+      "column_name": "completed_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "table_name": "items",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": "gen_random_uuid()"
+    },
+    {
+      "table_name": "items",
+      "column_name": "reporter_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "items",
+      "column_name": "kind",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "items",
+      "column_name": "title",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "items",
+      "column_name": "description",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "items",
+      "column_name": "category_id",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "items",
+      "column_name": "location_id",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "items",
+      "column_name": "event_date",
+      "data_type": "date",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "items",
+      "column_name": "color",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": "''::character varying"
+    },
+    {
+      "table_name": "items",
+      "column_name": "status",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": "'open'::character varying"
+    },
+    {
+      "table_name": "items",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "table_name": "items",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "table_name": "items",
+      "column_name": "search_vector",
+      "data_type": "tsvector",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "items",
+      "column_name": "reference_code",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "locations",
+      "column_name": "id",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": "nextval('locations_id_seq'::regclass)"
+    },
+    {
+      "table_name": "locations",
+      "column_name": "name",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "login_attempts",
+      "column_name": "identifier",
+      "data_type": "character",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "login_attempts",
+      "column_name": "failures",
+      "data_type": "integer",
+      "is_nullable": "NO",
+      "column_default": "0"
+    },
+    {
+      "table_name": "login_attempts",
+      "column_name": "blocked_until",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "outbox_events",
+      "column_name": "id",
+      "data_type": "bigint",
+      "is_nullable": "NO",
+      "column_default": "nextval('outbox_events_id_seq'::regclass)"
+    },
+    {
+      "table_name": "outbox_events",
+      "column_name": "event_type",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "outbox_events",
+      "column_name": "entity_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "outbox_events",
+      "column_name": "payload",
+      "data_type": "jsonb",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "outbox_events",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "table_name": "outbox_events",
+      "column_name": "processed_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "token_hash",
+      "data_type": "character",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "expires_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "sessions",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "table_name": "users",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": "gen_random_uuid()"
+    },
+    {
+      "table_name": "users",
+      "column_name": "name",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "users",
+      "column_name": "srn",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "users",
+      "column_name": "email",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "users",
+      "column_name": "password_hash",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "users",
+      "column_name": "role",
+      "data_type": "character varying",
+      "is_nullable": "NO",
+      "column_default": "'student'::character varying"
+    },
+    {
+      "table_name": "users",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    }
+  ],
+  "tables": [
+    {
+      "tablename": "categories"
+    },
+    {
+      "tablename": "claims"
+    },
+    {
+      "tablename": "handovers"
+    },
+    {
+      "tablename": "items"
+    },
+    {
+      "tablename": "locations"
+    },
+    {
+      "tablename": "login_attempts"
+    },
+    {
+      "tablename": "outbox_events"
+    },
+    {
+      "tablename": "sessions"
+    },
+    {
+      "tablename": "users"
+    }
+  ],
+  "functions": [
+    {
+      "proname": "check_item_consistency"
+    },
+    {
+      "proname": "confirm_handover"
+    },
+    {
+      "proname": "emit_change"
+    },
+    {
+      "proname": "guard_claim"
+    },
+    {
+      "proname": "guard_handover"
+    },
+    {
+      "proname": "match_candidates"
+    },
+    {
+      "proname": "prepare_item"
+    },
+    {
+      "proname": "review_claim"
+    }
+  ],
+  "indexes": [
+    {
+      "indexname": "categories_name_key"
+    },
+    {
+      "indexname": "categories_pkey"
+    },
+    {
+      "indexname": "claims_pkey"
+    },
+    {
+      "indexname": "claims_queue_idx"
+    },
+    {
+      "indexname": "handovers_claim_id_key"
+    },
+    {
+      "indexname": "handovers_item_id_key"
+    },
+    {
+      "indexname": "handovers_pkey"
+    },
+    {
+      "indexname": "items_filter_idx"
+    },
+    {
+      "indexname": "items_pkey"
+    },
+    {
+      "indexname": "items_reference_idx"
+    },
+    {
+      "indexname": "items_search_gin"
+    },
+    {
+      "indexname": "locations_name_key"
+    },
+    {
+      "indexname": "locations_pkey"
+    },
+    {
+      "indexname": "login_attempts_pkey"
+    },
+    {
+      "indexname": "one_live_claim_per_user"
+    },
+    {
+      "indexname": "one_owner_per_item"
+    },
+    {
+      "indexname": "outbox_events_pkey"
+    },
+    {
+      "indexname": "outbox_pending_idx"
+    },
+    {
+      "indexname": "sessions_expiry_idx"
+    },
+    {
+      "indexname": "sessions_pkey"
+    },
+    {
+      "indexname": "users_email_key"
+    },
+    {
+      "indexname": "users_pkey"
+    },
+    {
+      "indexname": "users_srn_key"
+    }
+  ],
+  "category_summary": [
+    {
+      "category": "Bottles & lunchboxes",
+      "total": "24",
+      "open_lost": "3",
+      "open_found": "18",
+      "returned": "1"
+    },
+    {
+      "category": "Electronics",
+      "total": "8",
+      "open_lost": "3",
+      "open_found": "2",
+      "returned": "1"
+    },
+    {
+      "category": "Books & stationery",
+      "total": "4",
+      "open_lost": "1",
+      "open_found": "1",
+      "returned": "1"
+    },
+    {
+      "category": "Clothing",
+      "total": "3",
+      "open_lost": "1",
+      "open_found": "2",
+      "returned": "0"
+    },
+    {
+      "category": "Keys & accessories",
+      "total": "3",
+      "open_lost": "1",
+      "open_found": "2",
+      "returned": "0"
+    },
+    {
+      "category": "Sports equipment",
+      "total": "3",
+      "open_lost": "1",
+      "open_found": "2",
+      "returned": "0"
+    },
+    {
+      "category": "Bags",
+      "total": "2",
+      "open_lost": "1",
+      "open_found": "1",
+      "returned": "0"
+    }
+  ],
+  "mongodb_indexes": {
+    "item_profiles": [
+      {
+        "v": 2,
+        "key": {
+          "_id": 1
+        },
+        "name": "_id_"
+      },
+      {
+        "v": 2,
+        "key": {
+          "public.brand": 1
+        },
+        "name": "public.brand_1"
+      }
+    ],
+    "audit_events": [
+      {
+        "v": 2,
+        "key": {
+          "_id": 1
+        },
+        "name": "_id_"
+      },
+      {
+        "v": 2,
+        "key": {
+          "entity_id": 1,
+          "created_at": -1
+        },
+        "name": "entity_id_1_created_at_-1"
+      },
+      {
+        "v": 2,
+        "key": {
+          "event_type": 1,
+          "created_at": -1
+        },
+        "name": "event_type_1_created_at_-1"
+      }
+    ]
+  },
+  "pending_events": 0,
+  "limitations": [
+    "Browser UI interaction and screenshot capture were not performed in this environment.",
+    "Native PostgreSQL simultaneous-approval test is skipped; use Docker setup to execute it."
+  ],
+  "seed_data": "24 synthetic reports, 4 synthetic demo accounts; integration tests add separate test records."
+}

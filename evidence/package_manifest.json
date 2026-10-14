@@ -1,0 +1,219 @@
+{
+  "project": "Campus Lost & Found Management System",
+  "repository": "https://github.com/atul-suresh/campus-lost-found-dbms",
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "998b1f8a45f11b21007896b89199a6c547d489b715a2ac3ccd54b4e0ef0c5339"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "723d3d96ad56f262daf329327de4095b9d3b5be63bad1dff47d01e65ba3d12f2"
+    },
+    {
+      "path": "README.md",
+      "sha256": "b8d570a519d137ac131f895e75e428c7d307cd085ef20cb1e90eda4852c80924"
+    },
+    {
+      "path": "START_HERE.md",
+      "sha256": "f56ee38c6fa40865a195c82e99a6afe30644bc08a21a15befa62daf0a22b8ca8"
+    },
+    {
+      "path": "app/api/[...path]/route.js",
+      "sha256": "8b51e1aa9db9d000cffd13c9eada3fdc168e3892e299dec8c7730183f967710a"
+    },
+    {
+      "path": "app/globals.css",
+      "sha256": "04ddf630d981309dc4c05562fb5b82c5c97b8198cbcbe10926fde8670ef56ef2"
+    },
+    {
+      "path": "app/layout.jsx",
+      "sha256": "fc9403accbfb137a26e7dc78a59696893772c9a1259808ffd8636b98608beb6e"
+    },
+    {
+      "path": "app/page.jsx",
+      "sha256": "07d902e12d38d41b33632c6ee07b0eb01a1d0a821cdf52bb76fa576310a7a38c"
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "2db934f4a05b27d8104008736ba7a4569d48f7cb559c8f1851fbf2305ca69750"
+    },
+    {
+      "path": "db/queries.sql",
+      "sha256": "346ee6ead45ccd9d19e40f8996d8c05baea0b7b0bbc3b5559fa66b13db81b9df"
+    },
+    {
+      "path": "db/schema.sql",
+      "sha256": "02f07176d9a55b3d3d9a7747b4f974c94fe075e72acd81e5b0c2437c13415332"
+    },
+    {
+      "path": "docs/ARCHITECTURE.mmd",
+      "sha256": "94b567b7b53bf7f7a1063e5a66228fc22fdbacd1fe84148511544bab7c1f08c0"
+    },
+    {
+      "path": "docs/Campus_Lost_Found_Report.pdf",
+      "sha256": "093f98dded01b157d53765811f59671ba00bb9c6f98cb715adebb751c7072e62"
+    },
+    {
+      "path": "docs/DATA_DICTIONARY.md",
+      "sha256": "73561fcc6699374001bc16103539fcd005ac9a58dd84d96ab5ece688ec016496"
+    },
+    {
+      "path": "docs/ER_DIAGRAM.mmd",
+      "sha256": "483647a7ac7a12503fefc7efcc51114588f4270f1af82f7408bf90f8b3aa7c69"
+    },
+    {
+      "path": "docs/GITHUB_AND_TEAM.md",
+      "sha256": "99cd897ab1aa5c5e81ce7e8c7d063a43dcda47a3d8f8894bd14774d52126c83e"
+    },
+    {
+      "path": "docs/REQUIREMENTS_TRACEABILITY.md",
+      "sha256": "1f72d3e1b0cf200c17875b7505ae61bf1f0b8e1d4ecc5401c400104ce3a6c019"
+    },
+    {
+      "path": "docs/SCREENSHOTS.md",
+      "sha256": "1b9b48e7d36519d4d9a36463a0bab6f5c544a7c17a045e933ddae011cf920d39"
+    },
+    {
+      "path": "docs/VIVA_AND_DEMO.md",
+      "sha256": "4947b5aa02d7bf86e5975c4ea02127cce7188bd14062511230ae6f4c83fa22f7"
+    },
+    {
+      "path": "docs/WORKFLOW.mmd",
+      "sha256": "9b13f004f1197929e63e8fd3b642858dbdc32e96c04eeca8a7b1f4def62f0a08"
+    },
+    {
+      "path": "docs/architecture.dot",
+      "sha256": "c2e001cb6266ee8aba2fef75ab7c0a5d62a9036051a7584b1b9681d9ed10605c"
+    },
+    {
+      "path": "docs/architecture.png",
+      "sha256": "14f852f8bfb1564c4ac2ef9e8289bd37b2d70acca4c1bb3412c089c713b3929d"
+    },
+    {
+      "path": "docs/architecture.svg",
+      "sha256": "bb3a9da0c0c3d4bd9f7346882606fb861f82bfa4b6208a51f8497aca202651c2"
+    },
+    {
+      "path": "docs/er.dot",
+      "sha256": "015b53a79fb1e4c55a20609c7ab7792198c4fa338ebba4ec5b1cd83cb2f25d82"
+    },
+    {
+      "path": "docs/er.png",
+      "sha256": "6f6cd23acd72b013fa6dc6f97018a73992b6c59bf1c84fe632692d2f3ddc866c"
+    },
+    {
+      "path": "docs/er.svg",
+      "sha256": "0bf188deb44c52cf945c88b08007022f7a3962a3bbe58526e3a40d9f1f9593e9"
+    },
+    {
+      "path": "docs/team.json",
+      "sha256": "ac2dcefe50046cc5fe87c7b8252c9401613eb724e25bb9b8f03513db66b4a355"
+    },
+    {
+      "path": "evidence/build.txt",
+      "sha256": "0a279d7209dbcb39ef91295c84ce2c1bc7aa5675ee123ef9ad58d2f87215b26e"
+    },
+    {
+      "path": "evidence/dependency_audit.json",
+      "sha256": "72cb5834853f2e17ea246086fa7720160095f42d01ac69a8698e729762b09bb9"
+    },
+    {
+      "path": "evidence/http_console.txt",
+      "sha256": "4c088f23cec54d353b46458624e3adf68e8f6764f2f64c464b8ef400a3be4dc7"
+    },
+    {
+      "path": "evidence/http_results.json",
+      "sha256": "0fab02ac11a3611fd0c3d44a928e15bdb3b1167c779a5ccf7d02ecd34d048fe5"
+    },
+    {
+      "path": "evidence/query_results.jsonl",
+      "sha256": "28f121ce0fedb630b797e31f79bce266ab97b4be5897d69265d449ad7ea4a45c"
+    },
+    {
+      "path": "evidence/test_results.tap",
+      "sha256": "5932c915f207698080cb3c87075d3e66003754a98ca69dbdf434035e40aec159"
+    },
+    {
+      "path": "evidence/verification.json",
+      "sha256": "bf5e7ee80ec43f75d7a32839ebf80cedcabaa1e5f675bca1efa5cd23fea8e728"
+    },
+    {
+      "path": "lib/auth.mjs",
+      "sha256": "0f8602995f1dd6df7d3d821ea41549488dc98668b9cae05e8867e122c9987855"
+    },
+    {
+      "path": "lib/db.mjs",
+      "sha256": "7b7b05d68f861e4d6cdf7c4ac4994cac82ef02217abc9a5e66a70cc863c0f3ad"
+    },
+    {
+      "path": "lib/projection.mjs",
+      "sha256": "d80705c5ac4a28fc582cf13f05b34cfc7ed9829377ef1fd29ed1b18ca4f6bc45"
+    },
+    {
+      "path": "lib/service.mjs",
+      "sha256": "2525cf71bff2f6080d242c65bf417d66d4e6a2ccae52d8a2c873c0c6f6b15b45"
+    },
+    {
+      "path": "lib/validation.mjs",
+      "sha256": "0cd4702edbe0196571f424b68b4a4adf0588d14654e7ea2df32e614d74564e32"
+    },
+    {
+      "path": "next.config.mjs",
+      "sha256": "151502756e8cb8b9cc153a46deaec9172ba0bf54fa062a9369165e03b3707bab"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "5265a5e99e2d5e09e418d9e950cc2e84798e3d5a1bb6a059fe2c9690061983b4"
+    },
+    {
+      "path": "package.json",
+      "sha256": "b13daf9736b2f15e8b428ed5e42fbe7105a966dc44548271828750af9cc73178"
+    },
+    {
+      "path": "scripts/collect-evidence.mjs",
+      "sha256": "420ec3871629920618c62cfcd439e5138584605a77ccd124d3777a914ee0e6e8"
+    },
+    {
+      "path": "scripts/generate_report.py",
+      "sha256": "9546a33356692f3d41809e3d5fd57a13e6459a3e352be4e1b1c64d477a0c813d"
+    },
+    {
+      "path": "scripts/publish-github.sh",
+      "sha256": "d440807c91a3ed6cf1a41f76471c77282e2693a026df7f3a8ff01c5486eec6ad"
+    },
+    {
+      "path": "scripts/queries.mjs",
+      "sha256": "8c6f018fd086d7d5f72c4f8aed33bc46f4f29696db6108091fb3ef266e2bcf06"
+    },
+    {
+      "path": "scripts/seed.mjs",
+      "sha256": "aa5c564eca7cb801fcc2e8ebf9b1b5f3d381fc8c224b5b5332adab34df412480"
+    },
+    {
+      "path": "scripts/setup.mjs",
+      "sha256": "125dea4b742fa6f63b0b6659935d64d978eeb821b4a6391647ab807b2c73588d"
+    },
+    {
+      "path": "scripts/sync.mjs",
+      "sha256": "c6c9c41ed4715914f74e58bffec378a2de70602aaba89274e0817b9a289c116c"
+    },
+    {
+      "path": "tests/http.mjs",
+      "sha256": "ac1b77fc72034fec0c9223d3e01e67275b1488157ae193477d3a07a36c989555"
+    },
+    {
+      "path": "tests/integration.test.mjs",
+      "sha256": "fcd373e1e5568fd9ce07d074a0e473f5e58522c9fa906e94d5db37e324fa9c04"
+    }
+  ],
+  "excluded": [
+    ".env",
+    "node_modules",
+    ".next",
+    ".git",
+    "runtime data"
+  ],
+  "publication_status": "Repository exists. Integration write rejected with 403; use scripts/publish-github.sh for initial upload.",
+  "verification": "30 database cases passed + 20 HTTP checks; 1 native concurrency check skipped; browser QA pending."
+}
