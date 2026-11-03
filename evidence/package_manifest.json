@@ -15,10 +15,6 @@
       "sha256": "b8d570a519d137ac131f895e75e428c7d307cd085ef20cb1e90eda4852c80924"
     },
     {
-      "path": "START_HERE.md",
-      "sha256": "f56ee38c6fa40865a195c82e99a6afe30644bc08a21a15befa62daf0a22b8ca8"
-    },
-    {
       "path": "app/api/[...path]/route.js",
       "sha256": "8b51e1aa9db9d000cffd13c9eada3fdc168e3892e299dec8c7730183f967710a"
     },
@@ -68,7 +64,7 @@
     },
     {
       "path": "docs/REQUIREMENTS_TRACEABILITY.md",
-      "sha256": "1f72d3e1b0cf200c17875b7505ae61bf1f0b8e1d4ecc5401c400104ce3a6c019"
+      "sha256": "48da2dcbcbea65315746e182f5b3a4eb08d5c0678b296aa63be1ae8ab028fbb0"
     },
     {
       "path": "docs/SCREENSHOTS.md",
@@ -79,32 +75,12 @@
       "sha256": "4947b5aa02d7bf86e5975c4ea02127cce7188bd14062511230ae6f4c83fa22f7"
     },
     {
-      "path": "docs/WORKFLOW.mmd",
-      "sha256": "9b13f004f1197929e63e8fd3b642858dbdc32e96c04eeca8a7b1f4def62f0a08"
-    },
-    {
-      "path": "docs/architecture.dot",
-      "sha256": "c2e001cb6266ee8aba2fef75ab7c0a5d62a9036051a7584b1b9681d9ed10605c"
-    },
-    {
       "path": "docs/architecture.png",
       "sha256": "14f852f8bfb1564c4ac2ef9e8289bd37b2d70acca4c1bb3412c089c713b3929d"
     },
     {
-      "path": "docs/architecture.svg",
-      "sha256": "bb3a9da0c0c3d4bd9f7346882606fb861f82bfa4b6208a51f8497aca202651c2"
-    },
-    {
-      "path": "docs/er.dot",
-      "sha256": "015b53a79fb1e4c55a20609c7ab7792198c4fa338ebba4ec5b1cd83cb2f25d82"
-    },
-    {
       "path": "docs/er.png",
       "sha256": "6f6cd23acd72b013fa6dc6f97018a73992b6c59bf1c84fe632692d2f3ddc866c"
-    },
-    {
-      "path": "docs/er.svg",
-      "sha256": "0bf188deb44c52cf945c88b08007022f7a3962a3bbe58526e3a40d9f1f9593e9"
     },
     {
       "path": "docs/team.json",
@@ -117,10 +93,6 @@
     {
       "path": "evidence/dependency_audit.json",
       "sha256": "72cb5834853f2e17ea246086fa7720160095f42d01ac69a8698e729762b09bb9"
-    },
-    {
-      "path": "evidence/http_console.txt",
-      "sha256": "4c088f23cec54d353b46458624e3adf68e8f6764f2f64c464b8ef400a3be4dc7"
     },
     {
       "path": "evidence/http_results.json",
@@ -215,5 +187,7 @@
     "runtime data"
   ],
   "publication_status": "Repository exists. Integration write rejected with 403; use scripts/publish-github.sh for initial upload.",
-  "verification": "30 database cases passed + 20 HTTP checks; 1 native concurrency check skipped; browser QA pending."
+  "verification": "30 database cases passed + 20 HTTP checks; 1 native concurrency check skipped; browser QA pending.",
+  "cleanup_reviewed_date": "2026-11-03",
+  "cleanup_note": "Removed duplicate start instructions, unused diagram formats/workflow and duplicate HTTP console output. Application code and recorded test results are unchanged."
 }

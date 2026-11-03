@@ -7,7 +7,7 @@ Source: the supplied DBMS Experiential Learning Level 3 requirements (5 pages) a
 | 1 | Meaningful, unique title; beyond basic CRUD | Verified claim-to-handover workflow and explainable matching | Implemented; confirm title uniqueness in your section |
 | 2 | Two members, both DB/application contributions | Atul Suresh and Aryan Musale with SRNs recorded; proposed work split and genuine contribution guide | Individual contribution commits to finalize |
 | 3 | Mandatory MySQL/PostgreSQL + NoSQL/vector | Native PostgreSQL Docker target + MongoDB; executed PostgreSQL engine via PGlite and native MongoDB during preparation | Implemented; native SQL local rerun required |
-| 4 | ER, relational schema, keys, relationships, constraints; NoSQL model | ER_DIAGRAM.mmd, er.svg, schema.sql and report data dictionary | Included |
+| 4 | ER, relational schema, keys, relationships, constraints; NoSQL model | ER_DIAGRAM.mmd, er.png, schema.sql and report data dictionary | Included |
 | 5 | DDL CREATE / ALTER / DROP, constraints/indexes/views | schema.sql and disposable ddl_demo in queries.sql | Executed |
 | 6 | DML INSERT/UPDATE/DELETE/SELECT and advanced queries | CRUD workflows and queries.sql JOIN/GROUP BY/HAVING/aggregates/subqueries | Executed |
 | 7 | At least 4 advanced SQL features + 1 NoSQL | Transactions, views, functions, triggers, indexing/full-text; Mongo aggregation | Implemented and exercised |
