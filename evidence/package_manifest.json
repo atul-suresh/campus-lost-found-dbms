@@ -1,8 +1,8 @@
 {
   "project": "Campus Lost & Found Management System",
   "repository": "https://github.com/atul-suresh/campus-lost-found-dbms",
-  "base_commit": "62c3382f40e22218cd8a7cec2478da8e22920bce",
-  "prepared_date": "2026-10-29",
+  "base_commit": "ae448ee68b90e3b02c80bb40a1eca43f191fffc2",
+  "prepared_date": "2026-11-03",
   "removed_files": [
     "START_HERE.md",
     "docs/GITHUB_AND_TEAM.md",
@@ -39,7 +39,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "8688ef91271784c3372a59019428da79361264acaef9f553c360763b3771e5ec"
+      "sha256": "f72659b3431ed9d454309e9440c04f29b6e7f84e626154362e951812439741b6"
     },
     {
       "path": "START_PROJECT.command",
@@ -87,7 +87,7 @@
     },
     {
       "path": "docs/Campus_Lost_Found_Report.pdf",
-      "sha256": "24c22f058bdce984278a95ad35820fe7a40daab0ac5fef382a89318d6cef7854"
+      "sha256": "0912fcec2a015f17b277a96355302b966beccb652f72a5bd84842da727620dd0"
     },
     {
       "path": "docs/DATA_DICTIONARY.md",
@@ -107,7 +107,7 @@
     },
     {
       "path": "docs/TEAM_CONTRIBUTIONS.md",
-      "sha256": "d0df229c67715d7e6dde4a3d942fa8e03441ae8e2214783f2a45bb345089cfd8"
+      "sha256": "9b1b33460e58e0604ba07cb0f9e3b0aa6133f8ae2d13c0f2adef9f1791ce1899"
     },
     {
       "path": "docs/architecture.png",
@@ -123,11 +123,15 @@
     },
     {
       "path": "evidence/browser_results.json",
-      "sha256": "ce65b8f9bc31f0cccfee5fa714a665be24d3e80fb9e2870399f66b68c6cc084b"
+      "sha256": "ee800aab673fcec65fbb7a39189f6ff7ffcc3a9b6a3939a89ab1228f374d9a61"
     },
     {
       "path": "evidence/build.txt",
-      "sha256": "d8d0da04cad00283519c7390710715750c9c2264699a0beeadb1ea59c2d39ea5"
+      "sha256": "139b478907e3152966ebeeedf763dbe9879c075bd590b70606eefc3aac176b17"
+    },
+    {
+      "path": "evidence/ci_run.json",
+      "sha256": "269fb3385b9143a23e97a65f28df93b36b929ecaa6689b8717dccafae71026a2"
     },
     {
       "path": "evidence/dependency_audit.json",
@@ -135,59 +139,59 @@
     },
     {
       "path": "evidence/http_results.json",
-      "sha256": "a68777c174d8dc80dbb2105746d84d895387722f809bc424b8341c8c2c307105"
+      "sha256": "57e732965427471c0ff8c6225971514a20dcc51710583a0d47210582a6f818d9"
     },
     {
       "path": "evidence/query_results.jsonl",
-      "sha256": "eb77f8980f87641e4b65419e5958a720a1b6897a987994dcef27b919260281c9"
+      "sha256": "f2346a0bdbebebf44cabf16c03b5adb98e24dc2cba8758210729377f1a192acf"
     },
     {
       "path": "evidence/screenshots/01-login.png",
-      "sha256": "282d6679cbb943f08a406265eec0b90009aa83f0ee712cee1201ece48fdd6f59"
+      "sha256": "ef1ec657e2a8bdb9bf02642a5d9dee58be0c9581a0a3827eb202fcdc72f42624"
     },
     {
       "path": "evidence/screenshots/02-student-dashboard.png",
-      "sha256": "9b280246051e1236b2fb259df8b19a6ad366f10106bcbfa9365f6ea0fc025bd7"
+      "sha256": "b21f55e3551f06891f92677bfbfc907fe7b9038a2507a0025c73757611e45493"
     },
     {
       "path": "evidence/screenshots/03-search.png",
-      "sha256": "f1b55f054ef8b20a5c696149024793ac92e36b39a1e2d17547aecb52a4b156ae"
+      "sha256": "3c688be967d90efa56f31482636a59bf72a7d66363a6fae9f394955c1515b5b1"
     },
     {
       "path": "evidence/screenshots/04-matches.png",
-      "sha256": "018ed7fe8a525be55eabd10cb5e5422f0caef63eac46ce886ed6473206f3f518"
+      "sha256": "c82e8830644ba8e89dcd86fb707450db13d6f8d1413104792a76595517ded3f6"
     },
     {
       "path": "evidence/screenshots/05-private-claim.png",
-      "sha256": "016c1de97f2d0947536491466e128e2e5f7802162323a82c462c07425f5494df"
+      "sha256": "cd201d03621f9c51771de5f084bb15720cf045a74704262e0f2ad21a400be47d"
     },
     {
       "path": "evidence/screenshots/06-staff-verification.png",
-      "sha256": "2a2cea4a9201798d5f5a0b0b986ad197bbe3174afba28c4d6220710d2f92f55a"
+      "sha256": "db87509e51144e2a9f6fd45a9b1d6d67e60aca5f550b962d2d207187e3ca3da8"
     },
     {
       "path": "evidence/screenshots/07-handover.png",
-      "sha256": "2e1b5db58230eba399fff1407ce24d392f2e26051c1d0ec66e3ab54af3d4a051"
+      "sha256": "2bf48d7511e1ea903554f0357d0166a10d7572ee1eaabb40c59555f795093792"
     },
     {
       "path": "evidence/screenshots/08-audit.png",
-      "sha256": "f603fc75455d3e176c736fdc84fe56729bcc893d3b10f24b730b0fca6ac688cc"
+      "sha256": "b384e167ce6a974763007d1aa80faf4c05ac4e551dec8dbbaca5527818a923ec"
     },
     {
       "path": "evidence/screenshots/09-mobile.png",
-      "sha256": "09167717326a23c248f86e3423e59ed7a91b6d110f1035d5c1808ff682081b34"
+      "sha256": "e6523f05be349d2dd48f1d32f7877bf3700c44eebdddcbb3e061324af0e4947f"
     },
     {
       "path": "evidence/test_results.tap",
-      "sha256": "7abe14d24a0ad1da5dfc96deef8d29ef1eec5f04dc31795bd3d84c173a00851d"
+      "sha256": "b34fb092474989941e496dd1a30c39bd29ac4bf72c3dc36f38ad001fd399f863"
     },
     {
       "path": "evidence/unit_results.tap",
-      "sha256": "bfd1fefcda52f00df17b0d6d18ff2f4fa8fb1eb423e316c2e26289dc672f1413"
+      "sha256": "9ab5b347926a45e6a850fd23654faca25079527faa1a91c745d2daf492035e64"
     },
     {
       "path": "evidence/verification.json",
-      "sha256": "4d4accc9f06e9adac0570d6ac1eabe8f945db1f9a6c3718e413c6d97cd73a14f"
+      "sha256": "0a1575e964825ef59775d7f09fdff963b79bbeac858ae33ff302d65644a68800"
     },
     {
       "path": "lib/auth.mjs",
@@ -287,5 +291,7 @@
     }
   ],
   "reviewed_date": "2026-11-03",
-  "publication_status": "Final verified package synchronized to GitHub; see repository history and Actions for current evidence."
+  "publication_status": "Final verified package synchronized to GitHub; see repository history and Actions for current evidence.",
+  "verification_run_url": "https://github.com/atul-suresh/campus-lost-found-dbms/actions/runs/41627780758",
+  "verified_application_commit": "ae448ee68b90e3b02c80bb40a1eca43f191fffc2"
 }

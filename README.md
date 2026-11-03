@@ -57,7 +57,7 @@ See `db/schema.sql`, `db/queries.sql`, `docs/DATA_DICTIONARY.md`, and the ER/arc
 
 ## Recorded verification
 
-Executed on 29 October 2026:
+Executed on 3 November 2026 against standard upstream database services:
 
 | Check | Passed | Failed | Skipped |
 |---|---:|---:|---:|
@@ -68,7 +68,7 @@ Executed on 29 October 2026:
 
 The production build passed with Next.js 16.4.3. `npm audit` reported zero known JavaScript dependency vulnerabilities at verification time. Nine genuine browser screenshots cover desktop and mobile views. Native simultaneous approval, rollback, MongoDB failure/recovery, privacy and atomic handover were exercised. Exact engine versions and the container runtime note are in `evidence/verification.json`; machine-readable results are in `evidence/`.
 
-Submission cleanup reviewed on 3 November 2026: the production build, unit checks and dependency audit were rechecked successfully. The database, HTTP and browser evidence above retains its original execution date.
+Final synchronization and all four verification suites completed on 3 November 2026. The run used unmodified PostgreSQL 17.6 and MongoDB 8.0.15 Docker images. [Successful verification run](https://github.com/atul-suresh/campus-lost-found-dbms/actions/runs/41627780758); tested commit `ae448ee68b90e3b02c80bb40a1eca43f191fffc2`. Machine-readable provenance is recorded in `evidence/ci_run.json`.
 
 The seed has 24 reports, four accounts, seven categories, six locations and three sample claims. Integration/browser suites add their own synthetic records in separate databases. Test records do not represent campus activity.
 

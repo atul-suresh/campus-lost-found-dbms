@@ -23,3 +23,7 @@ On 3 November 2026, Atul confirmed that both Atul and Aryan ran the application 
 | Aryan Musale | Ran the application and checked it, as reported by Atul | 3 November 2026 | Detailed code review and demo rehearsal not separately confirmed |
 
 The component ownership table provides a preparation structure rather than evidence of personally authored code. Record any additional review, rehearsal or personally authored change with its actual date and commit hash. Assisted synchronization and automated testing are documented as assisted work; no teammate authorship is manufactured.
+
+## Final repository verification
+
+On 3 November 2026, coding-assisted synchronization published the final package and reran all four suites on standard upstream PostgreSQL 17.6 and MongoDB 8.0.15 services. All 75 checks passed without failures or skips. The run and tested commit are recorded in `evidence/ci_run.json`. This automated verification is separate from the student-reported app checks above.

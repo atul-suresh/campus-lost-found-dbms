@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-29T03:34:33.302Z",
+  "generated_at": "2026-11-03T11:29:44.808Z",
   "sql_engine": "native-postgresql",
-  "runtime_note": "Native PostgreSQL 17.6 source build and MongoDB 8.0.15. This single-UID container cannot switch users or create Unix sockets. The test-only PostgreSQL build adds an environment-gated startup opt-in for UID 0; SQL, locks and transaction code are unchanged. Both databases use loopback TCP. The delivered Docker configuration uses standard upstream images without this adaptation.",
-  "postgresql_version": "PostgreSQL 17.6 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit",
+  "runtime_note": "Standard upstream PostgreSQL 17.6 and MongoDB 8.0.15 Docker services on a GitHub-hosted Ubuntu runner. No database binary modifications.",
+  "postgresql_version": "PostgreSQL 17.6 (Debian 17.6-2.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
   "mongodb_version": "8.0.15",
   "columns": [
     {
@@ -512,17 +512,17 @@
   ],
   "category_summary": [
     {
-      "category": "Bottles & lunchboxes",
-      "total": "28",
-      "open_lost": "4",
-      "open_found": "20",
-      "returned": "1"
+      "category": "Electronics",
+      "total": "6",
+      "open_lost": "3",
+      "open_found": "2",
+      "returned": "0"
     },
     {
-      "category": "Electronics",
-      "total": "9",
-      "open_lost": "3",
-      "open_found": "3",
+      "category": "Bottles & lunchboxes",
+      "total": "5",
+      "open_lost": "1",
+      "open_found": "2",
       "returned": "1"
     },
     {
@@ -531,6 +531,13 @@
       "open_lost": "1",
       "open_found": "1",
       "returned": "1"
+    },
+    {
+      "category": "Keys & accessories",
+      "total": "3",
+      "open_lost": "1",
+      "open_found": "2",
+      "returned": "0"
     },
     {
       "category": "Sports equipment",
@@ -544,20 +551,6 @@
       "total": "3",
       "open_lost": "1",
       "open_found": "2",
-      "returned": "0"
-    },
-    {
-      "category": "Keys & accessories",
-      "total": "3",
-      "open_lost": "1",
-      "open_found": "2",
-      "returned": "0"
-    },
-    {
-      "category": "Matching color regression",
-      "total": "2",
-      "open_lost": "1",
-      "open_found": "1",
       "returned": "0"
     },
     {

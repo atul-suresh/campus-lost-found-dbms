@@ -1,4 +1,3 @@
-npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
 
 > campus-lost-found@1.0.0 test
 > node --env-file=.env.test --test --test-reporter=tap --test-concurrency=1 tests/integration.test.mjs
@@ -8,211 +7,211 @@ TAP version 13
 # Subtest: 01 SQL and MongoDB engines execute real queries
 ok 1 - 01 SQL and MongoDB engines execute real queries
   ---
-  duration_ms: 423.796464
+  duration_ms: 377.728426
   type: 'test'
   ...
 # Subtest: 02 schema and seed reruns are idempotent
 ok 2 - 02 schema and seed reruns are idempotent
   ---
-  duration_ms: 184.409092
+  duration_ms: 183.115879
   type: 'test'
   ...
 # Subtest: 03 password authentication creates an expiring session
 ok 3 - 03 password authentication creates an expiring session
   ---
-  duration_ms: 60.410083
+  duration_ms: 39.372974
   type: 'test'
   ...
 # Subtest: 04 bad passwords are rejected and rate limited
 ok 4 - 04 bad passwords are rejected and rate limited
   ---
-  duration_ms: 214.694137
+  duration_ms: 191.339233
   type: 'test'
   ...
 # Subtest: 05 report insert and flexible MongoDB profile persist
 ok 5 - 05 report insert and flexible MongoDB profile persist
   ---
-  duration_ms: 12.367558
+  duration_ms: 10.081643
   type: 'test'
   ...
 # Subtest: 06 private identifying details hidden from other students
 ok 6 - 06 private identifying details hidden from other students
   ---
-  duration_ms: 10.277892
+  duration_ms: 8.87
   type: 'test'
   ...
 # Subtest: 07 search and filters return matching reports
 ok 7 - 07 search and filters return matching reports
   ---
-  duration_ms: 2.439689
+  duration_ms: 1.674457
   type: 'test'
   ...
 # Subtest: 08 invalid dates and short descriptions rejected
 ok 8 - 08 invalid dates and short descriptions rejected
   ---
-  duration_ms: 2.458036
+  duration_ms: 2.4317
   type: 'test'
   ...
 # Subtest: 09 SQL enforces category foreign keys and dates
 ok 9 - 09 SQL enforces category foreign keys and dates
   ---
-  duration_ms: 8.957303
+  duration_ms: 10.425743
   type: 'test'
   ...
 # Subtest: 10 reporter can update; another student cannot
 ok 10 - 10 reporter can update; another student cannot
   ---
-  duration_ms: 34.144723
+  duration_ms: 23.048009
   type: 'test'
   ...
 # Subtest: 11 report deletion removes the MongoDB profile
 ok 11 - 11 report deletion removes the MongoDB profile
   ---
-  duration_ms: 18.778336
+  duration_ms: 14.861496
   type: 'test'
   ...
 # Subtest: 12 linked lost report and ranked matching work
 ok 12 - 12 linked lost report and ranked matching work
   ---
-  duration_ms: 24.968181
+  duration_ms: 15.98027
   type: 'test'
   ...
 # Subtest: 13 finder cannot claim own report
 ok 13 - 13 finder cannot claim own report
   ---
-  duration_ms: 11.310374
+  duration_ms: 7.648607
   type: 'test'
   ...
 # Subtest: 14 duplicate active claim is blocked by partial unique index
 ok 14 - 14 duplicate active claim is blocked by partial unique index
   ---
-  duration_ms: 23.742624
+  duration_ms: 20.979789
   type: 'test'
   ...
 # Subtest: 15 a linked lost report must belong to the claimant
 ok 15 - 15 a linked lost report must belong to the claimant
   ---
-  duration_ms: 27.190174
+  duration_ms: 22.445341
   type: 'test'
   ...
 # Subtest: 16 claim evidence is visible only to claimant and staff
 ok 16 - 16 claim evidence is visible only to claimant and staff
   ---
-  duration_ms: 29.229062
+  duration_ms: 21.2027
   type: 'test'
   ...
 # Subtest: 17 student cannot approve or hand over claims
 ok 17 - 17 student cannot approve or hand over claims
   ---
-  duration_ms: 13.567414
+  duration_ms: 11.827252
   type: 'test'
   ...
 # Subtest: 18 approving one claim rejects competing pending claims
 ok 18 - 18 approving one claim rejects competing pending claims
   ---
-  duration_ms: 33.202609
+  duration_ms: 40.852817
   type: 'test'
   ...
 # Subtest: 19 verified handover atomically closes the linked lost report
 ok 19 - 19 verified handover atomically closes the linked lost report
   ---
-  duration_ms: 50.380858
+  duration_ms: 42.748333
   type: 'test'
   ...
 # Subtest: 20 handover before approval is rejected
 ok 20 - 20 handover before approval is rejected
   ---
-  duration_ms: 26.980911
+  duration_ms: 28.785713
   type: 'test'
   ...
 # Subtest: 21 rejection leaves the found item open
 ok 21 - 21 rejection leaves the found item open
   ---
-  duration_ms: 27.594065
+  duration_ms: 172.088253
   type: 'test'
   ...
 # Subtest: 22 withdrawal permitted only for the owner of a pending claim
 ok 22 - 22 withdrawal permitted only for the owner of a pending claim
   ---
-  duration_ms: 15.255464
+  duration_ms: 11.550019
   type: 'test'
   ...
 # Subtest: 23 reports with claim history cannot be deleted
 ok 23 - 23 reports with claim history cannot be deleted
   ---
-  duration_ms: 13.690085
+  duration_ms: 10.007872
   type: 'test'
   ...
 # Subtest: 24 a failed transaction rolls back report and outbox together
 ok 24 - 24 a failed transaction rolls back report and outbox together
   ---
-  duration_ms: 1.980261
+  duration_ms: 2.362074
   type: 'test'
   ...
 # Subtest: 25 deferred trigger blocks an inconsistent reserved state
 ok 25 - 25 deferred trigger blocks an inconsistent reserved state
   ---
-  duration_ms: 13.072633
+  duration_ms: 14.699502
   type: 'test'
   ...
 # Subtest: 26 MongoDB validation rejects malformed documents
 ok 26 - 26 MongoDB validation rejects malformed documents
   ---
-  duration_ms: 1.60656
+  duration_ms: 2.032708
   type: 'test'
   ...
 # Subtest: 27 outbox retry is idempotent and removes delivered payloads
 ok 27 - 27 outbox retry is idempotent and removes delivered payloads
   ---
-  duration_ms: 16.270151
+  duration_ms: 14.992504
   type: 'test'
   ...
 # Subtest: 28 MongoDB failure retains SQL event and subsequent recovery delivers it
 ok 28 - 28 MongoDB failure retains SQL event and subsequent recovery delivers it
   ---
-  duration_ms: 15.488001
+  duration_ms: 17.294652
   type: 'test'
   ...
 # Subtest: 29 MongoDB aggregation and SQL views power staff dashboard
 ok 29 - 29 MongoDB aggregation and SQL views power staff dashboard
   ---
-  duration_ms: 5.637526
+  duration_ms: 6.308775
   type: 'test'
   ...
 # Subtest: 30 important JOIN/GROUP BY/HAVING/subquery/DDL examples execute
 ok 30 - 30 important JOIN/GROUP BY/HAVING/subquery/DDL examples execute
   ---
-  duration_ms: 9.989911
+  duration_ms: 7.128472
   type: 'test'
   ...
 # Subtest: 31 competing approvals preserve exactly one owner under concurrency
 ok 31 - 31 competing approvals preserve exactly one owner under concurrency
   ---
-  duration_ms: 25.856522
+  duration_ms: 24.59531
   type: 'test'
   ...
 # Subtest: 32 category-specific descriptors persist without disclosing private clues
 ok 32 - 32 category-specific descriptors persist without disclosing private clues
   ---
-  duration_ms: 13.261261
+  duration_ms: 18.694325
   type: 'test'
   ...
 # Subtest: 33 reserved attribute names and malformed Mongo public values are rejected
 ok 33 - 33 reserved attribute names and malformed Mongo public values are rejected
   ---
-  duration_ms: 7.702732
+  duration_ms: 6.424049
   type: 'test'
   ...
 # Subtest: 34 matching excludes a different category despite matching metadata
 ok 34 - 34 matching excludes a different category despite matching metadata
   ---
-  duration_ms: 17.760389
+  duration_ms: 14.115741
   type: 'test'
   ...
 # Subtest: 35 matching normalizes color and does not reward blank colors
 ok 35 - 35 matching normalizes color and does not reward blank colors
   ---
-  duration_ms: 19.022691
+  duration_ms: 24.197064
   type: 'test'
   ...
 1..35
@@ -223,4 +222,4 @@ ok 35 - 35 matching normalizes color and does not reward blank colors
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 1606.598806
+# duration_ms 1565.848074
