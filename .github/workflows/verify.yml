@@ -33,7 +33,7 @@ concurrency:
 
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     services:
       postgres:
@@ -63,12 +63,22 @@ jobs:
       NEXT_TELEMETRY_DISABLED: '1'
       VERIFICATION_RUNTIME_NOTE: Standard upstream PostgreSQL 17.6 and MongoDB 8.0.15 Docker services on a GitHub-hosted Ubuntu runner. No database binary modifications.
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: '22.20.0'
           cache: npm
       - run: npm ci
+      - name: Clear previous generated evidence
+        run: |
+          node --input-type=module <<'JS'
+          import {rm} from 'node:fs/promises';
+          for (const name of ['test_results.tap', 'unit_results.tap', 'build.txt',
+            'http_results.json', 'browser_results.json', 'query_results.jsonl',
+            'verification.json', 'dependency_audit.json', 'ci_run.json', 'screenshots']) {
+            await rm('evidence/' + name, {recursive: true, force: true});
+          }
+          JS
       - name: Prepare isolated test databases
         run: |
           node --input-type=module <<'JS'
@@ -109,8 +119,19 @@ jobs:
           JS
       - name: Save verification evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: dbms-verification-${{ github.sha }}
-          path: evidence/
+          path: |
+            evidence/test_results.tap
+            evidence/unit_results.tap
+            evidence/build.txt
+            evidence/http_results.json
+            evidence/browser_results.json
+            evidence/query_results.jsonl
+            evidence/verification.json
+            evidence/dependency_audit.json
+            evidence/ci_run.json
+            evidence/screenshots/
+            evidence/browser_failure.*
           retention-days: 30
