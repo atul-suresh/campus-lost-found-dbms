@@ -7,7 +7,7 @@ const origin='http://localhost:3100',results=[];
 const server=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--port','3100','--hostname','127.0.0.1'],{env:{...process.env,APP_ORIGIN:origin},stdio:['ignore','pipe','pipe']});let serverLog='';server.stdout.on('data',b=>{serverLog+=b;console.log(String(b));});server.stderr.on('data',b=>{serverLog+=b;console.error(String(b));});
 let cookie='';
 async function call(path,method='GET',body,custom={}){const r=await fetch(origin+'/api/'+path,{signal:AbortSignal.timeout(12000),method,headers:{...(cookie?{cookie}:{}),...(method!=='GET'?{origin,'content-type':'application/json'}:{}),...custom},body:body?JSON.stringify(body):undefined});return {r,data:await r.json()};}
-async function check(name,fn){await writeFile('evidence/http_progress.txt',name);await fn();results.push({name,status:'passed'});console.log('PASS',name);}
+async function check(name,fn){await fn();results.push({name,status:'passed'});console.log('PASS',name);}
 try{
  let up=false;for(let n=0;n<40;n++){try{await fetch(origin,{signal:AbortSignal.timeout(2500)});up=true;break;}catch{await delay(300);}}if(!up)throw new Error(serverLog);
  await check('anonymous API access rejected',async()=>assert.equal((await call('items')).r.status,401));
@@ -32,6 +32,6 @@ try{
  await check('HTTP staff approves the ownership claim',async()=>{const signed=await call('auth/login','POST',{email:'staff@campus.test',password:process.env.DEMO_PASSWORD});cookie=signed.r.headers.get('set-cookie').split(';')[0];assert.equal((await call('claims/'+claimId+'/review','POST',{decision:'approved',note:'Identifying initials verified in person'})).r.status,200);assert.equal((await call('items/'+foundId)).data.item.status,'reserved');});
  await check('HTTP handover returns found item and closes lost report',async()=>{assert.equal((await call('claims/'+claimId+'/handover','POST',{note:'Owner collected headphones at campus helpdesk'})).r.status,200);assert.equal((await call('items/'+foundId)).data.item.status,'returned');assert.equal((await call('items/'+lostId)).data.item.status,'closed');});
  const page=await fetch(origin);assert.equal(page.status,200);const html=await page.text();assert.ok(html.includes('Campus Lost'));assert.equal(page.headers.get('x-frame-options'),'DENY');results.push({name:'production page and security headers served',status:'passed'});
- await writeFile('evidence/http_results.json',JSON.stringify({generated_at:new Date().toISOString(),results,browser_qa:'Not performed in this environment.'},null,2));
+ await writeFile('evidence/http_results.json',JSON.stringify({generated_at:new Date().toISOString(),results,browser_qa:'See the separately executed browser_results.json for browser checks and screenshots.'},null,2));
  console.log(`${results.length} HTTP checks passed`);
 }finally{server.kill('SIGTERM');}

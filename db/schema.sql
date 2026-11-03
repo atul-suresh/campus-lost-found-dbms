@@ -135,12 +135,12 @@ CREATE OR REPLACE FUNCTION match_candidates(p_lost uuid) RETURNS TABLE(item_id u
  WITH source AS (SELECT * FROM items WHERE id=p_lost AND kind='lost' AND status='open'), scored AS (
   SELECT f.id,
    (CASE WHEN f.category_id=l.category_id THEN 35 ELSE 0 END + CASE WHEN f.location_id=l.location_id THEN 20 ELSE 0 END +
-    CASE WHEN lower(f.color)=lower(l.color) AND l.color<>'' THEN 15 ELSE 0 END +
+    CASE WHEN lower(trim(f.color))=lower(trim(l.color)) AND trim(l.color)<>'' THEN 15 ELSE 0 END +
     greatest(0,15-least(abs(f.event_date-l.event_date),15)) +
     least(15,ts_rank_cd(f.search_vector,plainto_tsquery('english',l.title||' '||l.description))::numeric*100))::numeric score,
    concat_ws(', ',CASE WHEN f.category_id=l.category_id THEN 'same category' END,CASE WHEN f.location_id=l.location_id THEN 'same location' END,
-    CASE WHEN lower(f.color)=lower(l.color) AND l.color<>'' THEN 'same color' END,'date gap: '||abs(f.event_date-l.event_date)||' days') reasons
-  FROM items f CROSS JOIN source l WHERE f.kind='found' AND f.status='open' AND f.reporter_id<>l.reporter_id
+    CASE WHEN lower(trim(f.color))=lower(trim(l.color)) AND trim(l.color)<>'' THEN 'same color' END,'date gap: '||abs(f.event_date-l.event_date)||' days') reasons
+  FROM items f CROSS JOIN source l WHERE f.kind='found' AND f.status='open' AND f.reporter_id<>l.reporter_id AND f.category_id=l.category_id
  ) SELECT id,round(score,1),reasons FROM scored WHERE score>=35 ORDER BY score DESC,id LIMIT 12;
 $$;
 CREATE OR REPLACE VIEW item_directory AS

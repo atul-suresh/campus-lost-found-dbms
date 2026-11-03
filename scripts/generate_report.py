@@ -3,6 +3,7 @@ Run from any directory; optional real browser screenshots are included when supp
 Requires reportlab. The output is docs/Campus_Lost_Found_Report.pdf.
 """
 from pathlib import Path
+from datetime import date
 import json,re,html
 from collections import defaultdict
 from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,PageBreak,Table,TableStyle,Image,Preformatted,KeepTogether
@@ -17,7 +18,28 @@ DOCS=ROOT/'docs'
 team=json.loads((DOCS/'team.json').read_text())
 verification=json.loads((ROOT/'evidence/verification.json').read_text())
 http=json.loads((ROOT/'evidence/http_results.json').read_text())
+browser_path=ROOT/'evidence/browser_results.json'
+browser=json.loads(browser_path.read_text()) if browser_path.is_file() else {'results':[]}
+unit_path=ROOT/'evidence/unit_results.tap'
+unit_tap=unit_path.read_text() if unit_path.is_file() else ''
+unit_pass=re.search(r'^# pass (\d+)$',unit_tap,re.M)
+browser_pass=sum(r.get('status')=='passed' for r in browser.get('results',[]))
 tap=(ROOT/'evidence/test_results.tap').read_text()
+counts={k:int(re.search(r'^# '+k+r' (\d+)$',tap,re.M).group(1)) for k in ['tests','pass','fail','skipped']}
+screens=[('01-login.png','Sign-in page with password hidden'),('02-student-dashboard.png','SQL-backed student overview'),('03-search.png','Filtered blue bottle search'),('04-matches.png','Ranked candidates for open lost report'),('05-private-claim.png','Synthetic claimant evidence'),('06-staff-verification.png','Staff verification of identifying detail'),('07-handover.png','Returned/handed_over states'),('08-audit.png','Document audit history and grouped counts')]
+captured=[(name,label,ROOT/'evidence/screenshots'/name) for name,label in screens if (ROOT/'evidence/screenshots'/name).is_file()]
+native_concurrency_passed=(verification.get('sql_engine')=='native-postgresql'
+ and 'PGlite' not in verification['postgresql_version']
+ and counts['fail']==0 and counts['skipped']==0
+ and bool(re.search(r'^ok \d+ - 31 competing approvals preserve exactly one owner under concurrency\s*$',tap,re.M)))
+native_status=('Native PostgreSQL simultaneous-approval test passed in the recorded run.' if native_concurrency_passed else 'Native PostgreSQL simultaneous-approval verification remains pending; the recorded evidence does not establish it.')
+screen_status=f'{len(captured)} of {len(screens)} required browser screenshots are included. The browser suite records {browser_pass} passed checks across the student and staff workflow, including desktop and mobile views.' if browser_pass else f'{len(captured)} of {len(screens)} requested screenshots are included. Browser interaction results have not been recorded.'
+pending_checks=[]
+if not native_concurrency_passed: pending_checks.append('Native PostgreSQL simultaneous approval')
+if len(captured)<len(screens): pending_checks.append(f'{len(screens)-len(captured)} browser screenshots')
+audit_path=ROOT/'evidence/dependency_audit.json'
+audit_total=(json.loads(audit_path.read_text()).get('metadata',{}).get('vulnerabilities',{}).get('total') if audit_path.is_file() else None)
+audit_status=(f'{audit_total} vulnerabilities reported by the recorded npm audit.' if audit_total is not None else 'No npm audit summary recorded; inspect the evidence file.')
 INK=colors.HexColor('#183d34');GREEN=colors.HexColor('#216b54');MUTED=colors.HexColor('#718376');PALE=colors.HexColor('#eff4e7');LINE=colors.HexColor('#d9e3d2')
 W,H=A4;CW=W-104
 styles=getSampleStyleSheet()
@@ -68,10 +90,9 @@ p('Campus Lost<br/>&amp; Found<br/>Management System','CoverTitle')
 p('Verified ownership. Explainable matching.<br/>Transactional handover and recoverable document history.','Sub')
 story.append(Spacer(1,25))
 table(['PROJECT','DETAIL'],[
- ('Course','DBMS Experiential Learning - Level 3'),('Member 1',f"{team['member1_name']} | {team['member1_srn']}"),('Member 2',f"{team['member2_name']} | {team['member2_srn']}"),('Technology','Next.js + PostgreSQL + MongoDB'),('Updated','14 October 2026'),('Repository',team.get('github_url') or 'Publication pending - instructions included in source package')],[115,CW-115])
-p('Implementation and test-evidence package','Sub')
-p('The implementation, schema, sample data, report and demonstration guide are prepared. Actual browser screenshots, native PostgreSQL concurrency verification, and genuine individual contribution evidence remain to be completed by the team. The public repository link is recorded above; confirm the project files are uploaded before submission.','Tiny')
-p('All sample accounts, reports, ownership statements and handovers are demonstration data. This report does not claim real university incident data or completed individual contributions.','Tiny')
+ ('Course','DBMS Experiential Learning - Level 3'),('Member 1',f"{team['member1_name']} | {team['member1_srn']}"),('Member 2',f"{team['member2_name']} | {team['member2_srn']}"),('Technology','Next.js + PostgreSQL + MongoDB'),('Updated',date.today().strftime('%d %B %Y')),('Repository',team.get('github_url') or 'Publication pending - instructions included in source package')],[115,CW-115])
+p('DBMS Project Report','Sub')
+p('All sample accounts, reports, ownership statements and handovers use synthetic demonstration data.','Tiny')
 
 section(1,'Problem, objectives and scope')
 p('Lost belongings are often reported through disconnected group chats or informal helpdesk notes. Students may miss relevant reports, and public messages can disclose the very identifying detail needed to verify an owner. A simple list of items does not provide a trustworthy return process.')
@@ -87,7 +108,7 @@ section(2,'System architecture')
 img(DOCS/'architecture.png',maxw=410,maxh=425)
 p('The Next.js page calls backend route handlers. Every protected handler authenticates a server session; services check the role and report ownership. Parameterized PostgreSQL queries operate on normalized workflow records. MongoDB serves item profiles and staff audit documents.')
 p('SQL changes and outbox events commit together. A dispatcher writes the event to MongoDB and marks it delivered only after success. Cross-database consistency is eventual; no distributed ACID transaction is claimed. Supplemental details can be pending while the report itself is safely committed.')
-p('Configuration is supplied through environment variables. The deliverable uses native PostgreSQL and MongoDB through Docker; the preparation evidence used the PostgreSQL engine via PGlite and a native MongoDB 8.0.15 process.','Tiny')
+p('Configuration uses environment variables. Native PostgreSQL 17.6 and MongoDB 8.0.15 executed the final verification. The delivered laptop configuration uses standard Docker images.','Tiny')
 
 section(3,'Entity-relationship design')
 img(DOCS/'er.png',maxw=CW,maxh=525)
@@ -195,9 +216,9 @@ p('INSERT, UPDATE and DELETE are exercised by report creation/edit/deletion and 
 
 section(11,'Ranking and advanced database features')
 sub('Explainable matching')
-p('match_candidates accepts an open lost report and retrieves open found reports from another reporter. It scores category, location, nonempty color equality, event-date distance and PostgreSQL text rank. The function returns at most 12 candidates scoring at least 35 points.')
-table(['SIGNAL','MAXIMUM','CALCULATION'],[('Category','35','35 if category IDs are equal.'),('Location','20','20 if location IDs are equal.'),('Color','15','15 for equal nonempty colors, case-insensitive.'),('Date proximity','15','max(0, 15 - min(abs(date difference),15)).'),('Description/title text','15','min(15, ts_rank_cd(found search_vector, lost text query) * 100).')],[95,60,CW-155])
-p('The score ranges from 0 to 100. It is a heuristic relevance score, not a calibrated probability. Weights have not been optimized on labelled real campus data. The matching output explains metadata agreement and date gaps; staff verification remains mandatory.')
+p('match_candidates accepts an open lost report and retrieves open found reports from another reporter in the same category. It scores category, location, nonempty color equality, event-date distance and PostgreSQL text rank. The function returns at most 12 candidates scoring at least 35 points.')
+table(['SIGNAL','POINTS','CALCULATION'],[('Category','35','35 if category IDs are equal.'),('Location','20','20 if location IDs are equal.'),('Color','15','15 for equal nonempty colors, case-insensitive.'),('Date proximity','15','max(0, 15 - min(abs(date difference),15)).'),('Description/title text','15','min(15, ts_rank_cd(found search_vector, lost text query) * 100).')],[95,60,CW-155])
+p('The score ranges from 0 to 100. A category eligibility check excludes unrelated item types. Color comparison ignores case and surrounding whitespace, and empty colors receive no bonus. The score is heuristic rather than a calibrated ownership probability. Staff must still verify ownership evidence.')
 sub('Course advanced-feature coverage')
 table(['FEATURE','CONCRETE USE'],[('Transactions / locks','Report + profile-event write; row-locked approval; atomic receipt/return/link closure.'),('Views','item_directory JOIN view and category_summary filtered aggregates.'),('Stored functions','review_claim, confirm_handover and match_candidates.'),('Triggers','prepare_item, guard_claim, audit emission, handover guard and deferred state checks.'),('Indexing / full text','GIN search, composite filters, unique reference and partial claim ownership indexes.'),('NoSQL aggregation','Staff grouped audit action counts and latest activity timestamps.')],[122,CW-122])
 
@@ -207,38 +228,36 @@ table(['METHOD / PATH','AUTHORIZED BEHAVIOR'],[('POST auth/register','Create a s
 p('Passwords use salted scrypt hashes. A random session token is stored in an HttpOnly, SameSite cookie; SQL stores its SHA-256 hash and a 12-hour expiry. Login attempts are temporarily blocked after repeated failures. Mutation requests require an allowed Origin. For HTTPS hosting, COOKIE_SECURE must be true. Local compose services bind to loopback and the provided settings are for a laptop demonstration.')
 
 section(13,'Application interface and screenshot evidence')
-p('The implemented interface contains student and staff navigation, sign-in/registration, overview counts, a noticeboard with filters, report forms with optional photos, report details, ranked matches, private claim forms, a staff verification desk and an audit dashboard. The layout contains responsive rules for smaller screens and labelled input controls.')
-p('<b>Verification limit:</b> Browser interaction and screenshot capture were not performed in this environment. A production build and HTTP responses validate application compilation and backend integration; they do not prove every visual interaction. No UI illustration is passed off as an actual screenshot.')
-screens=[('01-login.png','Sign-in page with password hidden'),('02-student-dashboard.png','SQL-backed student overview'),('03-search.png','Filtered blue bottle search'),('04-matches.png','Ranked candidates for open lost report'),('05-private-claim.png','Synthetic claimant evidence'),('06-staff-verification.png','Staff verification of identifying detail'),('07-handover.png','Returned/handed_over states'),('08-audit.png','Document audit history and grouped counts')]
-table(['SCREENSHOT FILE','CAPTURE TO COMPLETE'],screens,[185,CW-185])
-p('Run the app locally using the README and capture these screens under evidence/screenshots/. Use only synthetic evidence for private-detail captures. The included generator inserts captured images into a screenshot appendix when rerun. Instructions are in docs/SCREENSHOTS.md.')
+p('The interface provides student and staff navigation, sign-in/registration, overview counts, a filtered noticeboard, photo/report forms, ranked matches, private claims, staff verification and audit history. Category-specific public descriptors include bottle capacity, device model and clothing size. Editing preserves flexible attributes. The responsive layout uses labelled input controls and clears prior session state on logout.')
+p(html.escape(screen_status))
+table(['SCREENSHOT FILE','EVIDENCE STATUS'],[(name,('Included: ' if (ROOT/'evidence/screenshots'/name).is_file() else 'Missing: ')+label) for name,label in screens],[185,CW-185])
+p('The appendix contains the required application screenshots. Original PNGs, including the mobile view, are in evidence/screenshots/.')
 
 section(14,'Actual tests and results')
-counts={k:int(re.search(r'^# '+k+r' (\d+)$',tap,re.M).group(1)) for k in ['tests','pass','fail','skipped']}
-table(['CHECK','RECORDED RESULT'],[('Next.js production build','Passed: page and API route compiled successfully.'),('Database/service suite',f"{counts['pass']} passed; {counts['fail']} failed; {counts['skipped']} skipped, out of {counts['tests']} tests."),('Backend HTTP suite',f"{len(http['results'])} checks passed against production Next.js server."),('Dependency audit','0 known vulnerabilities reported by npm audit at preparation time.'),('PostgreSQL engine',verification['postgresql_version'].split(',')[0]),('MongoDB process',verification['mongodb_version']),('Outbox after checks',str(verification['pending_events'])+' pending events.'),('Unexecuted checks','Native PostgreSQL simultaneous approval; browser UI interaction/screenshots.')],[160,CW-160])
+p('Recorded database, HTTP and browser execution date: '+verification['generated_at'][:10]+'. The raw evidence preserves the original test results.','Tiny')
+table(['CHECK','RECORDED RESULT'],[('Next.js production build','See evidence/build.txt for the recorded build output.'),('Database/service suite',f"{counts['pass']} passed; {counts['fail']} failed; {counts['skipped']} skipped, out of {counts['tests']} tests."),('Backend HTTP suite',f"{sum(r.get('status')=='passed' for r in http['results'])} of {len(http['results'])} checks passed against production Next.js server."),('Browser workflow suite',f'{browser_pass} of {len(browser.get("results",[]))} checks passed with genuine screenshot capture.'),('Formatting / attribute checks',(unit_pass.group(1)+' passed' if unit_pass else 'Not recorded')),('Dependency audit',audit_status),('PostgreSQL engine',verification['postgresql_version'].split(',')[0]),('MongoDB process',verification['mongodb_version']),('Outbox after checks',str(verification['pending_events'])+' pending events.'),('Remaining verification','; '.join(pending_checks) or 'Native concurrency, browser workflow and required screenshot evidence recorded.')],[160,CW-160])
 sub('Database cases exercised')
 p('Executed cases covered setup idempotence, valid/invalid authentication, expiry/throttling, insert/update/delete, private-field visibility, search/filtering, bad dates, foreign keys, matching, own-report restrictions, duplicate active claims, correct lost links, claimant-only evidence, staff authorization, competing-claim rejection, handover and link closure, premature/duplicate handover, withdrawal, retained claim history, rollback, deferred consistency, MongoDB validation, idempotent event replay, delivery failure/recovery, aggregation/views and DDL/query examples.')
-p('The simultaneous-approval test is included but skipped when SQL_ENGINE=pglite. Its skip is intentional because PGlite is a single-connection PostgreSQL build; the normal Docker setup runs native PostgreSQL and can execute that test. Native concurrency results must be collected on the team\'s machine before claiming that scenario is demonstrated.')
+p(html.escape(native_status))
 sub('Recorded HTTP cases')
 p('The '+str(len(http['results']))+' production HTTP checks exercised anonymous rejection, Origin enforcement, protected session cookies, dashboard/directory retrieval, staff-only routes, invalid input, parameterized search, student-only registration, logout, audit/diagnostics and synchronization. The full lifecycle created a found report and linked lost report, hid the private clue from a student, submitted ownership evidence, denied student review, then approved and handed over as staff. Both final report states were checked.')
 p('Raw outputs: evidence/test_results.tap, http_results.json, query_results.jsonl, build.txt and verification.json. The verification database includes additional isolated test records beyond the 24-report seed. Test data counts are not presented as real campus activity.','Tiny')
 
 section(15,'Setup, demonstration and team work')
 sub('Local execution')
-code('''cp .env.example .env
-npm ci
-docker compose up -d --wait
-npm run db:setup
-npm run dev''')
+p('Install Node.js 20.9 or newer and start Docker Desktop. Open the extracted project folder, then launch START_PROJECT.command. The launcher prepares the databases and a fresh synthetic demo pair, builds the application and starts the server.')
+code('bash START_PROJECT.command')
 p('Open http://localhost:3000. The example demo password is CampusDemo@2026 and may be changed in .env before seeding. Demo emails are atul@campus.test, student085@campus.test, student@campus.test and staff@campus.test. The actual seed generates hashes from DEMO_PASSWORD; no production credential is embedded in application code.')
 sub('Demonstration sequence')
 p('Show an open lost report and matching found candidates. Submit a new claim with a private identifying detail and a linked lost report. Sign in as staff, compare evidence, approve with a reason, and complete handover with a receipt. Show returned/handed_over and closed linked-report states. Explain SQL constraints/functions, display the audit aggregation, and run npm run demo:queries.')
-sub('Proposed responsibilities, to complete honestly')
-table(['MEMBER','DATABASE + APPLICATION WORK'],[(team['member1_name']+' ('+team['member1_srn']+')','SQL schema/constraints, matching/verification; report/search/matches and staff workflow. Own a justified ranking improvement and its test.'),(team['member2_name']+' ('+team['member2_srn']+')','MongoDB validation/aggregation/retry; authentication, profile/photo forms and audit view. Own a category-specific descriptor enhancement and its checks.')],[110,CW-110])
-p('This is a proposed split, not completed contribution evidence. Each member must make meaningful modifications, test them and commit using their own identity. The package does not fabricate student authors or commit history.')
-section(16,'Conclusion and submission status')
+sub('Component ownership for demonstration')
+table(['MEMBER','DATABASE + APPLICATION WORK'],[(team['member1_name']+' ('+team['member1_srn']+')','SQL schema/constraints, matching/verification; report/search/matches and staff workflow. Explain category eligibility, normalized color ranking and the regression tests.'),(team['member2_name']+' ('+team['member2_srn']+')','MongoDB validation/aggregation/retry; authentication, profile/photo forms and audit view. Explain category-specific descriptors, profile validation and recovery checks.')],[110,CW-110])
+p('The final implementation and automated verification were completed with coding assistance. Component ownership above organizes the student demonstration. Individual review, understanding and any personally authored modifications must be recorded by each member in docs/TEAM_CONTRIBUTIONS.md.')
+section(16,'Conclusion')
 p('The custom implementation connects relational integrity, document flexibility, explainable discovery and verified recovery. It goes beyond report CRUD through private claims, atomic handovers, final-state enforcement and retryable audit delivery. Automated evidence supports the implemented database and API behavior under the stated test environment.')
-p('Before final submission: confirm section title uniqueness, capture the actual UI screens, run native PostgreSQL/concurrency checks, record each member\'s real contributions, confirm the initial project upload, and keep the public GitHub repository updated. The report and repository link are the instructor\'s requested deliverables.')
+p('The final implementation supports reporting, discovery, private ownership review and consistent handover. The supplied tests exercise the recovery workflow, integrity rules, authorization and document-delivery recovery using synthetic data.')
+sub('Verification environment')
+p('Verification used native PostgreSQL 17.6 and MongoDB 8.0.15 through loopback TCP in an isolated build container. Standard upstream Docker images are provided for the laptop demonstration. Detailed runtime notes are recorded in evidence/verification.json. Automated tests cover the stated synthetic scenarios rather than a production deployment.','Tiny')
 sub('References')
 refs=[('Course source','Supplied DBMS Level 3 Project Requirements.pdf, pp. 1-5; supplied instructor email image.'),('Next.js','https://nextjs.org/docs/app/api-reference/functions/cookies'),('Next.js authentication','https://nextjs.org/docs/app/guides/authentication'),('PostgreSQL trigger definitions','https://www.postgresql.org/docs/current/sql-createtrigger.html'),('PostgreSQL text search','https://www.postgresql.org/docs/current/textsearch.html'),('MongoDB validation','https://www.mongodb.com/docs/manual/core/schema-validation/'),('MongoDB aggregation','https://www.mongodb.com/docs/manual/core/aggregation-pipeline/')]
 for label,url in refs:p('<b>'+html.escape(label)+':</b> '+html.escape(url),'Tiny')

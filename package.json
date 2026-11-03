@@ -8,18 +8,25 @@
     "start": "next start --hostname 0.0.0.0",
     "db:setup": "node --env-file=.env scripts/setup.mjs",
     "db:sync": "node --env-file=.env scripts/sync.mjs",
-    "test": "node --env-file=.env --test --test-reporter=tap --test-concurrency=1 tests/integration.test.mjs",
+    "test": "node --env-file=.env.test --test --test-reporter=tap --test-concurrency=1 tests/integration.test.mjs",
     "demo:queries": "node --env-file=.env scripts/queries.mjs",
-    "test:http": "node --env-file=.env tests/http.mjs"
+    "test:http": "node --env-file=.env.test tests/http.mjs",
+    "test:unit": "node --test --test-reporter=tap tests/formatting.test.mjs",
+    "verify": "bash scripts/verify.sh",
+    "test:browser": "node --env-file=.env.browser tests/browser.mjs",
+    "demo:prepare": "node --env-file=.env scripts/prepare-demo.mjs"
   },
   "dependencies": {
-    "next": "16.4.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
+    "mongodb": "6.20.0",
+    "next": "16.4.3",
     "pg": "8.16.3",
-    "mongodb": "6.20.0"
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
   },
   "engines": {
     "node": ">=20.9"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
   }
 }

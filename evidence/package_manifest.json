@@ -1,18 +1,53 @@
 {
   "project": "Campus Lost & Found Management System",
   "repository": "https://github.com/atul-suresh/campus-lost-found-dbms",
+  "base_commit": "62779984a4de79cf52661a0ec7688e97fce66047",
+  "prepared_date": "2026-10-29",
+  "removed_files": [
+    "START_HERE.md",
+    "docs/GITHUB_AND_TEAM.md",
+    "docs/SCREENSHOTS.md",
+    "docs/VIVA_AND_DEMO.md",
+    "docs/WORKFLOW.mmd",
+    "docs/architecture.dot",
+    "docs/architecture.svg",
+    "docs/er.dot",
+    "docs/er.svg",
+    "evidence/browser_console.txt",
+    "evidence/http_console.txt"
+  ],
   "files": [
     {
       "path": ".env.example",
       "sha256": "998b1f8a45f11b21007896b89199a6c547d489b715a2ac3ccd54b4e0ef0c5339"
     },
     {
+      "path": ".gitattributes",
+      "sha256": "cec49aef5091af7dadd0cdf20fc7f32f1d400434d9f1b2064154022218e77bbf"
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "sha256": "9258d9bbc73c96fbced7b41f0854e952c69907d31fafd3897ada9e95df947631"
+    },
+    {
       "path": ".gitignore",
-      "sha256": "723d3d96ad56f262daf329327de4095b9d3b5be63bad1dff47d01e65ba3d12f2"
+      "sha256": "1580e6d062cda02bd7fbd7e588c7a97d28602afd8150fc68b44c2105869fc347"
+    },
+    {
+      "path": "PUBLISH_TO_GITHUB.command",
+      "sha256": "2e090e7cc2cb768d12acabd16795065f86712aeb0d71c609bb63a1f091ba835f"
     },
     {
       "path": "README.md",
-      "sha256": "b8d570a519d137ac131f895e75e428c7d307cd085ef20cb1e90eda4852c80924"
+      "sha256": "8688ef91271784c3372a59019428da79361264acaef9f553c360763b3771e5ec"
+    },
+    {
+      "path": "START_PROJECT.command",
+      "sha256": "e468192810221e4c99f71db326553b948000cab6d416145f0a61f8709d569e0d"
+    },
+    {
+      "path": "VERIFY_PROJECT.command",
+      "sha256": "6e31501d5083bf35ed6e9f03b7535586b479df131acdf9ad2727137f664d4a76"
     },
     {
       "path": "app/api/[...path]/route.js",
@@ -28,7 +63,7 @@
     },
     {
       "path": "app/page.jsx",
-      "sha256": "07d902e12d38d41b33632c6ee07b0eb01a1d0a821cdf52bb76fa576310a7a38c"
+      "sha256": "1f798f5e4817a77e5a678f1e482dfd7468c17230bdc63bc964029b5a21d98303"
     },
     {
       "path": "compose.yaml",
@@ -40,15 +75,19 @@
     },
     {
       "path": "db/schema.sql",
-      "sha256": "02f07176d9a55b3d3d9a7747b4f974c94fe075e72acd81e5b0c2437c13415332"
+      "sha256": "52dfedb8c1818934750a80905519b21c21744763b044e333a7624bd64ed3b239"
     },
     {
       "path": "docs/ARCHITECTURE.mmd",
       "sha256": "94b567b7b53bf7f7a1063e5a66228fc22fdbacd1fe84148511544bab7c1f08c0"
     },
     {
+      "path": "docs/Campus_Lost_Found_Presentation.pptx",
+      "sha256": "8e9ce6d6b17545c06f592156b5ee6d79fd87df6fe383a9e0e1d5a2f6e8ef00c1"
+    },
+    {
       "path": "docs/Campus_Lost_Found_Report.pdf",
-      "sha256": "093f98dded01b157d53765811f59671ba00bb9c6f98cb715adebb751c7072e62"
+      "sha256": "24c22f058bdce984278a95ad35820fe7a40daab0ac5fef382a89318d6cef7854"
     },
     {
       "path": "docs/DATA_DICTIONARY.md",
@@ -59,20 +98,16 @@
       "sha256": "483647a7ac7a12503fefc7efcc51114588f4270f1af82f7408bf90f8b3aa7c69"
     },
     {
-      "path": "docs/GITHUB_AND_TEAM.md",
-      "sha256": "99cd897ab1aa5c5e81ce7e8c7d063a43dcda47a3d8f8894bd14774d52126c83e"
+      "path": "docs/PRESENTATION_AND_VIVA.md",
+      "sha256": "4267327e23ebe7a66f6f46c0c49cca9fa981bdb86a410cf26b384ae0147d22ee"
     },
     {
       "path": "docs/REQUIREMENTS_TRACEABILITY.md",
-      "sha256": "48da2dcbcbea65315746e182f5b3a4eb08d5c0678b296aa63be1ae8ab028fbb0"
+      "sha256": "ca6f481c230a74f1932d14e36b1b6edfc266e66aba8f14e246da9c4945cfc27d"
     },
     {
-      "path": "docs/SCREENSHOTS.md",
-      "sha256": "1b9b48e7d36519d4d9a36463a0bab6f5c544a7c17a045e933ddae011cf920d39"
-    },
-    {
-      "path": "docs/VIVA_AND_DEMO.md",
-      "sha256": "4947b5aa02d7bf86e5975c4ea02127cce7188bd14062511230ae6f4c83fa22f7"
+      "path": "docs/TEAM_CONTRIBUTIONS.md",
+      "sha256": "d0df229c67715d7e6dde4a3d942fa8e03441ae8e2214783f2a45bb345089cfd8"
     },
     {
       "path": "docs/architecture.png",
@@ -84,31 +119,75 @@
     },
     {
       "path": "docs/team.json",
-      "sha256": "ac2dcefe50046cc5fe87c7b8252c9401613eb724e25bb9b8f03513db66b4a355"
+      "sha256": "acda00ea80864c93b33bfa9200b73ef9b5544d87c41c56c395219e799358ea85"
+    },
+    {
+      "path": "evidence/browser_results.json",
+      "sha256": "ce65b8f9bc31f0cccfee5fa714a665be24d3e80fb9e2870399f66b68c6cc084b"
     },
     {
       "path": "evidence/build.txt",
-      "sha256": "0a279d7209dbcb39ef91295c84ce2c1bc7aa5675ee123ef9ad58d2f87215b26e"
+      "sha256": "d8d0da04cad00283519c7390710715750c9c2264699a0beeadb1ea59c2d39ea5"
     },
     {
       "path": "evidence/dependency_audit.json",
-      "sha256": "72cb5834853f2e17ea246086fa7720160095f42d01ac69a8698e729762b09bb9"
+      "sha256": "1da99e4193f4e7ef659adcf92c58c3505407f11b38f1a5504d2c779ad3ad8e0e"
     },
     {
       "path": "evidence/http_results.json",
-      "sha256": "0fab02ac11a3611fd0c3d44a928e15bdb3b1167c779a5ccf7d02ecd34d048fe5"
+      "sha256": "a68777c174d8dc80dbb2105746d84d895387722f809bc424b8341c8c2c307105"
     },
     {
       "path": "evidence/query_results.jsonl",
-      "sha256": "28f121ce0fedb630b797e31f79bce266ab97b4be5897d69265d449ad7ea4a45c"
+      "sha256": "eb77f8980f87641e4b65419e5958a720a1b6897a987994dcef27b919260281c9"
+    },
+    {
+      "path": "evidence/screenshots/01-login.png",
+      "sha256": "282d6679cbb943f08a406265eec0b90009aa83f0ee712cee1201ece48fdd6f59"
+    },
+    {
+      "path": "evidence/screenshots/02-student-dashboard.png",
+      "sha256": "9b280246051e1236b2fb259df8b19a6ad366f10106bcbfa9365f6ea0fc025bd7"
+    },
+    {
+      "path": "evidence/screenshots/03-search.png",
+      "sha256": "f1b55f054ef8b20a5c696149024793ac92e36b39a1e2d17547aecb52a4b156ae"
+    },
+    {
+      "path": "evidence/screenshots/04-matches.png",
+      "sha256": "018ed7fe8a525be55eabd10cb5e5422f0caef63eac46ce886ed6473206f3f518"
+    },
+    {
+      "path": "evidence/screenshots/05-private-claim.png",
+      "sha256": "016c1de97f2d0947536491466e128e2e5f7802162323a82c462c07425f5494df"
+    },
+    {
+      "path": "evidence/screenshots/06-staff-verification.png",
+      "sha256": "2a2cea4a9201798d5f5a0b0b986ad197bbe3174afba28c4d6220710d2f92f55a"
+    },
+    {
+      "path": "evidence/screenshots/07-handover.png",
+      "sha256": "2e1b5db58230eba399fff1407ce24d392f2e26051c1d0ec66e3ab54af3d4a051"
+    },
+    {
+      "path": "evidence/screenshots/08-audit.png",
+      "sha256": "f603fc75455d3e176c736fdc84fe56729bcc893d3b10f24b730b0fca6ac688cc"
+    },
+    {
+      "path": "evidence/screenshots/09-mobile.png",
+      "sha256": "09167717326a23c248f86e3423e59ed7a91b6d110f1035d5c1808ff682081b34"
     },
     {
       "path": "evidence/test_results.tap",
-      "sha256": "5932c915f207698080cb3c87075d3e66003754a98ca69dbdf434035e40aec159"
+      "sha256": "7abe14d24a0ad1da5dfc96deef8d29ef1eec5f04dc31795bd3d84c173a00851d"
+    },
+    {
+      "path": "evidence/unit_results.tap",
+      "sha256": "bfd1fefcda52f00df17b0d6d18ff2f4fa8fb1eb423e316c2e26289dc672f1413"
     },
     {
       "path": "evidence/verification.json",
-      "sha256": "bf5e7ee80ec43f75d7a32839ebf80cedcabaa1e5f675bca1efa5cd23fea8e728"
+      "sha256": "4d4accc9f06e9adac0570d6ac1eabe8f945db1f9a6c3718e413c6d97cd73a14f"
     },
     {
       "path": "lib/auth.mjs",
@@ -119,8 +198,12 @@
       "sha256": "7b7b05d68f861e4d6cdf7c4ac4994cac82ef02217abc9a5e66a70cc863c0f3ad"
     },
     {
+      "path": "lib/descriptors.mjs",
+      "sha256": "d08c8f062ae1aeb8f11b5ba633b957a22e0188786f5ca230cba528bd20c50473"
+    },
+    {
       "path": "lib/projection.mjs",
-      "sha256": "d80705c5ac4a28fc582cf13f05b34cfc7ed9829377ef1fd29ed1b18ca4f6bc45"
+      "sha256": "ba825e9b725dd1a268ccec208f7441b2dacc71de8aa23fc3c48e2ac44c69c49d"
     },
     {
       "path": "lib/service.mjs",
@@ -128,7 +211,7 @@
     },
     {
       "path": "lib/validation.mjs",
-      "sha256": "0cd4702edbe0196571f424b68b4a4adf0588d14654e7ea2df32e614d74564e32"
+      "sha256": "e50145ad4c50f5450db25c5a025a116f4233224151ce644804c506f1a0bfd377"
     },
     {
       "path": "next.config.mjs",
@@ -136,23 +219,31 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "5265a5e99e2d5e09e418d9e950cc2e84798e3d5a1bb6a059fe2c9690061983b4"
+      "sha256": "056f16bebde19f88971a799fcd4956ebd666eb944796c5be91472ea647cd9705"
     },
     {
       "path": "package.json",
-      "sha256": "b13daf9736b2f15e8b428ed5e42fbe7105a966dc44548271828750af9cc73178"
+      "sha256": "322307fbb657513335a38211dd6cb456f122798d1e89d3a7422eec32224762d8"
     },
     {
       "path": "scripts/collect-evidence.mjs",
-      "sha256": "420ec3871629920618c62cfcd439e5138584605a77ccd124d3777a914ee0e6e8"
+      "sha256": "428dea7310e4bff1337ddff30014f875c0dfb05a92956caf4cf2343d47186e5e"
     },
     {
       "path": "scripts/generate_report.py",
-      "sha256": "9546a33356692f3d41809e3d5fd57a13e6459a3e352be4e1b1c64d477a0c813d"
+      "sha256": "6983cdbd3d8b8043dd59a9c8c8cdac059f19815292729f80c061a8c1570acc54"
+    },
+    {
+      "path": "scripts/prepare-demo.mjs",
+      "sha256": "f81f7cf471828d448c4571fa4986f23301a443e08a2e585df4ef6bd078edc431"
+    },
+    {
+      "path": "scripts/prepare-test-env.mjs",
+      "sha256": "3d4f692577b612c037646bf62e351424d9bcb50ac51cfef2f00d7ed3d84a1caf"
     },
     {
       "path": "scripts/publish-github.sh",
-      "sha256": "d440807c91a3ed6cf1a41f76471c77282e2693a026df7f3a8ff01c5486eec6ad"
+      "sha256": "bfd6a9fcc3b300b461fded47df86f9421cf62599f900ad130e5080279de4b486"
     },
     {
       "path": "scripts/queries.mjs",
@@ -167,27 +258,34 @@
       "sha256": "125dea4b742fa6f63b0b6659935d64d978eeb821b4a6391647ab807b2c73588d"
     },
     {
+      "path": "scripts/start-demo.sh",
+      "sha256": "98dde6bc06128e14e5d4dc93b21c76368234bcb08fd6dbdfd1e27f0aec551b86"
+    },
+    {
       "path": "scripts/sync.mjs",
       "sha256": "c6c9c41ed4715914f74e58bffec378a2de70602aaba89274e0817b9a289c116c"
     },
     {
+      "path": "scripts/verify.sh",
+      "sha256": "4c84f90b8af2da60625488e9ee7d6703fd0b736b58ddbc8e7da069fc245ef0dc"
+    },
+    {
+      "path": "tests/browser.mjs",
+      "sha256": "adeed711257c032e666af4c1bd3376b66606ee0caad703c324669d5ca4ffe58b"
+    },
+    {
+      "path": "tests/formatting.test.mjs",
+      "sha256": "0007404e5c5a2dc65a2dabce53dc36fdb9dc7567f0c2b256e51ba74bce218d85"
+    },
+    {
       "path": "tests/http.mjs",
-      "sha256": "ac1b77fc72034fec0c9223d3e01e67275b1488157ae193477d3a07a36c989555"
+      "sha256": "493e5847819718a595012fdb1c519a1323c4565b1b5305900f55bc4bcb84c2d4"
     },
     {
       "path": "tests/integration.test.mjs",
-      "sha256": "fcd373e1e5568fd9ce07d074a0e473f5e58522c9fa906e94d5db37e324fa9c04"
+      "sha256": "a3b9dc935eb7580b4ffefc8c385954c6b0ba2ecf735c2446e7d867e15c53133c"
     }
   ],
-  "excluded": [
-    ".env",
-    "node_modules",
-    ".next",
-    ".git",
-    "runtime data"
-  ],
-  "publication_status": "Repository exists. Integration write rejected with 403; use scripts/publish-github.sh for initial upload.",
-  "verification": "30 database cases passed + 20 HTTP checks; 1 native concurrency check skipped; browser QA pending.",
-  "cleanup_reviewed_date": "2026-11-03",
-  "cleanup_note": "Removed duplicate start instructions, unused diagram formats/workflow and duplicate HTTP console output. Application code and recorded test results are unchanged."
+  "reviewed_date": "2026-11-03",
+  "publication_status": "Final verified package synchronized to GitHub; see repository history and Actions for current evidence."
 }

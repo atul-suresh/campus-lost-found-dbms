@@ -1,7 +1,8 @@
 {
-  "generated_at": "2026-10-13T15:36:59.925Z",
-  "sql_engine": "pglite",
-  "postgresql_version": "PostgreSQL 18.6 (PGlite 0.5.9) on wasm32-unknown-emscripten, compiled by emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.1.74 (1092ec30a3fb1d46b1782ff1b4db5094d3d06ae5), 32-bit",
+  "generated_at": "2026-10-29T03:34:33.302Z",
+  "sql_engine": "native-postgresql",
+  "runtime_note": "Native PostgreSQL 17.6 source build and MongoDB 8.0.15. This single-UID container cannot switch users or create Unix sockets. The test-only PostgreSQL build adds an environment-gated startup opt-in for UID 0; SQL, locks and transaction code are unchanged. Both databases use loopback TCP. The delivered Docker configuration uses standard upstream images without this adaptation.",
+  "postgresql_version": "PostgreSQL 17.6 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit",
   "mongodb_version": "8.0.15",
   "columns": [
     {
@@ -512,16 +513,16 @@
   "category_summary": [
     {
       "category": "Bottles & lunchboxes",
-      "total": "24",
-      "open_lost": "3",
-      "open_found": "18",
+      "total": "28",
+      "open_lost": "4",
+      "open_found": "20",
       "returned": "1"
     },
     {
       "category": "Electronics",
-      "total": "8",
+      "total": "9",
       "open_lost": "3",
-      "open_found": "2",
+      "open_found": "3",
       "returned": "1"
     },
     {
@@ -530,6 +531,13 @@
       "open_lost": "1",
       "open_found": "1",
       "returned": "1"
+    },
+    {
+      "category": "Sports equipment",
+      "total": "3",
+      "open_lost": "1",
+      "open_found": "2",
+      "returned": "0"
     },
     {
       "category": "Clothing",
@@ -546,10 +554,10 @@
       "returned": "0"
     },
     {
-      "category": "Sports equipment",
-      "total": "3",
+      "category": "Matching color regression",
+      "total": "2",
       "open_lost": "1",
-      "open_found": "2",
+      "open_found": "1",
       "returned": "0"
     },
     {
@@ -605,8 +613,7 @@
   },
   "pending_events": 0,
   "limitations": [
-    "Browser UI interaction and screenshot capture were not performed in this environment.",
-    "Native PostgreSQL simultaneous-approval test is skipped; use Docker setup to execute it."
+    "Screenshot presence does not establish complete browser interaction coverage."
   ],
   "seed_data": "24 synthetic reports, 4 synthetic demo accounts; integration tests add separate test records."
 }

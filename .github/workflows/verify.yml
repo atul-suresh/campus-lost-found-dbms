@@ -1,0 +1,116 @@
+name: Verify application and databases
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'lib/**'
+      - 'db/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - 'package*.json'
+      - 'compose.yaml'
+      - '.github/workflows/verify.yml'
+  pull_request:
+    paths:
+      - 'app/**'
+      - 'lib/**'
+      - 'db/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - 'package*.json'
+      - 'compose.yaml'
+      - '.github/workflows/verify.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17.6
+        env:
+          POSTGRES_USER: campus
+          POSTGRES_PASSWORD: campus_ci_password
+          POSTGRES_DB: campus_lost_found_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U campus -d campus_lost_found_test"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+      mongo:
+        image: mongo:8.0.15
+        ports: ['27017:27017']
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.adminCommand({ping:1})'"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      DATABASE_URL: postgresql://campus:campus_ci_password@127.0.0.1:5432/campus_lost_found_test
+      MONGODB_URI: mongodb://127.0.0.1:27017
+      MONGODB_DB: campus_lost_found_test
+      DEMO_PASSWORD: CampusDemo@2026
+      ALLOW_TEST_DATABASE: 'true'
+      SQL_ENGINE: native-postgresql
+      COOKIE_SECURE: 'false'
+      NEXT_TELEMETRY_DISABLED: '1'
+      VERIFICATION_RUNTIME_NOTE: Standard upstream PostgreSQL 17.6 and MongoDB 8.0.15 Docker services on a GitHub-hosted Ubuntu runner. No database binary modifications.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.20.0'
+          cache: npm
+      - run: npm ci
+      - name: Prepare isolated test databases
+        run: |
+          node --input-type=module <<'JS'
+          import pg from 'pg';
+          const client = new pg.Client({connectionString: process.env.DATABASE_URL});
+          await client.connect();
+          await client.query('CREATE DATABASE campus_lost_found_browser_test');
+          await client.end();
+          JS
+          node scripts/prepare-test-env.mjs
+          node scripts/prepare-test-env.mjs --browser
+      - name: Unit and native database checks
+        run: |
+          npm run test:unit 2>&1 | tee evidence/unit_results.tap
+          npm test 2>&1 | tee evidence/test_results.tap
+      - name: Production build and HTTP workflow
+        run: |
+          npm run build 2>&1 | tee evidence/build.txt
+          npm run test:http
+          node --env-file=.env.test scripts/queries.mjs > evidence/query_results.jsonl
+      - name: Browser workflow and screenshots
+        run: |
+          npx playwright install --with-deps chromium
+          npm run test:browser
+      - name: Capture versions and dependency audit
+        run: |
+          node --env-file=.env.test scripts/collect-evidence.mjs
+          npm audit --json > evidence/dependency_audit.json
+          node --input-type=module <<'JS'
+          import {writeFileSync} from 'node:fs';
+          writeFileSync('evidence/ci_run.json', JSON.stringify({
+            generated_at: new Date().toISOString(),
+            commit: process.env.GITHUB_SHA,
+            url: `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`,
+            node: process.version,
+            platform: `${process.platform}/${process.arch}`
+          }, null, 2));
+          JS
+      - name: Save verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbms-verification-${{ github.sha }}
+          path: evidence/
+          retention-days: 30

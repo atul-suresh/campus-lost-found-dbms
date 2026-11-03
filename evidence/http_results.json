@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T15:36:59.147Z",
+  "generated_at": "2026-10-29T03:34:25.240Z",
   "results": [
     {
       "name": "anonymous API access rejected",
@@ -82,5 +82,5 @@
       "status": "passed"
     }
   ],
-  "browser_qa": "Not performed in this environment."
+  "browser_qa": "See the separately executed browser_results.json for browser checks and screenshots."
 }

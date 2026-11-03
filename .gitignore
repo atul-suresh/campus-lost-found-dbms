@@ -5,3 +5,6 @@ node_modules/
 !.env.example
 coverage/
 *.log
+.report-venv/
+evidence/http_progress.txt
+evidence/browser_failure.*

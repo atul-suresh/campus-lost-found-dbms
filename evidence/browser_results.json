@@ -1,0 +1,88 @@
+{
+  "generated_at": "2026-10-29T03:34:32.811Z",
+  "browser": "153.0.8010.0",
+  "viewport": "1440x1000 desktop and 390x844 mobile",
+  "database": "Separate seeded browser test databases",
+  "results": [
+    {
+      "name": "sign-in screen renders with labelled fields",
+      "status": "passed"
+    },
+    {
+      "name": "student overview loads real seeded counts",
+      "status": "passed"
+    },
+    {
+      "name": "found report form persists the category descriptor",
+      "status": "passed"
+    },
+    {
+      "name": "editing a report retains its descriptor and private clue",
+      "status": "passed"
+    },
+    {
+      "name": "lost report form creates a claimant-owned report",
+      "status": "passed"
+    },
+    {
+      "name": "search and filters show the expected found report",
+      "status": "passed"
+    },
+    {
+      "name": "matching presents the found candidate with explanations",
+      "status": "passed"
+    },
+    {
+      "name": "unrelated students cannot see the found report private clue",
+      "status": "passed"
+    },
+    {
+      "name": "ownership claim links to the student lost report",
+      "status": "passed"
+    },
+    {
+      "name": "staff verification displays the private ownership evidence",
+      "status": "passed"
+    },
+    {
+      "name": "staff approval reserves the item",
+      "status": "passed"
+    },
+    {
+      "name": "handover completes the claim and returns the item",
+      "status": "passed"
+    },
+    {
+      "name": "handover closes the linked lost report",
+      "status": "passed"
+    },
+    {
+      "name": "staff audit history and event aggregation render",
+      "status": "passed"
+    },
+    {
+      "name": "logout clears staff navigation and allows a fresh student session",
+      "status": "passed"
+    },
+    {
+      "name": "student overview remains usable at mobile width",
+      "status": "passed"
+    },
+    {
+      "name": "browser reports no uncaught application errors",
+      "status": "passed"
+    }
+  ],
+  "screenshots": [
+    "01-login.png",
+    "02-student-dashboard.png",
+    "03-search.png",
+    "04-matches.png",
+    "05-private-claim.png",
+    "06-staff-verification.png",
+    "07-handover.png",
+    "08-audit.png",
+    "09-mobile.png"
+  ],
+  "page_errors": []
+}

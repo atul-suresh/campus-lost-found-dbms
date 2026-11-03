@@ -48,3 +48,36 @@ test('28 MongoDB failure retains SQL event and subsequent recovery delivers it',
 test('29 MongoDB aggregation and SQL views power staff dashboard',async()=>{const d=await svc.dashboard(staff);assert.ok(d.summary.length===7);assert.ok((await auditAggregation()).some(x=>x._id==='items.insert'));await assert.rejects(svc.auditLog(a),e=>e.status===403);});
 test('30 important JOIN/GROUP BY/HAVING/subquery/DDL examples execute',async()=>{const results=await sql().query(await readFile(new URL('../db/queries.sql',import.meta.url),'utf8'));assert.ok(results.some(x=>x.command==='DROP'));assert.ok(results.filter(x=>x.command==='SELECT').length>=8);});
 test('31 competing approvals preserve exactly one owner under concurrency',{skip:process.env.SQL_ENGINE==='pglite'?'PGlite is single-connection; rerun on native PostgreSQL for concurrency proof':false},async()=>{const i=await found();const other=(await sql().query("SELECT * FROM users WHERE email='student@campus.test'")).rows[0];const c1=(await svc.createClaim(a,{item_id:i.id,statement:'First ownership claim with a private detail'})).claim,c2=(await svc.createClaim(other,{item_id:i.id,statement:'Second ownership claim with a private detail'})).claim;const results=await Promise.allSettled([svc.review(staff,c1.id,{decision:'approved',note:'First proof verified'}),svc.review(staff,c2.id,{decision:'approved',note:'Second proof verified'})]);assert.equal(results.filter(x=>x.status==='fulfilled').length,1);assert.equal(Number((await sql().query("SELECT count(*) FROM claims WHERE item_id=$1 AND status='approved'",[i.id])).rows[0].count),1);});
+
+test('32 category-specific descriptors persist without disclosing private clues',async()=>{
+ const i=(await svc.createItem(b,{...input(),attributes:{brand:'Milton',capacity:'750 ml'}})).item;
+ const publicView=await svc.getItem(a,i.id);
+ assert.equal(publicView.details.capacity,'750 ml');assert.equal(publicView.details.secret,undefined);
+ await svc.updateItem(b,i.id,{...input(),title:'Updated bottle with capacity',attributes:{brand:'Milton',capacity:'750 ml'}});
+ assert.equal((await svc.getItem(a,i.id)).details.capacity,'750 ml');
+});
+test('33 reserved attribute names and malformed Mongo public values are rejected',async()=>{
+ await assert.rejects(svc.createItem(b,{...input(),attributes:{secret:'Should be private'}}),e=>e.status===400);
+ const i=await found();
+ await assert.rejects((await mongo()).collection('item_profiles').updateOne({_id:i.id},{$set:{'public.capacity':750}}),e=>e.code===121);
+});
+test('34 matching excludes a different category despite matching metadata',async()=>{
+ const lost=(await svc.createItem(a,input('lost'))).item;
+ const otherCategory=(await sql().query('SELECT id FROM categories WHERE id<>$1 LIMIT 1',[category])).rows[0].id;
+ const i=(await svc.createItem(b,{...input(),category_id:otherCategory})).item;
+ assert.ok(!(await svc.matches(a,lost.id)).some(row=>row.id===i.id));
+});
+test('35 matching normalizes color and does not reward blank colors',async()=>{
+ // A separate category prevents the twelve-result limit from hiding a fixture
+ // behind earlier tests' equally scored reports.
+ const isolated=(await sql().query("INSERT INTO categories(name) VALUES('Matching color regression') RETURNING id")).rows[0].id;
+ const lost=(await svc.createItem(a,{...input('lost'),category_id:isolated})).item;
+ const i=(await svc.createItem(b,{...input(),category_id:isolated})).item;
+ await sql().query("UPDATE items SET color=' BLUE ' WHERE id=$1",[i.id]);
+ const matching=(await sql().query('SELECT score,reasons FROM match_candidates($1) WHERE item_id=$2',[lost.id,i.id])).rows[0];
+ assert.match(matching.reasons,/same color/);
+ await sql().query("UPDATE items SET color='' WHERE id=ANY($1::uuid[])",[[lost.id,i.id]]);
+ const blank=(await sql().query('SELECT score,reasons FROM match_candidates($1) WHERE item_id=$2',[lost.id,i.id])).rows[0];
+ assert.doesNotMatch(blank.reasons,/same color/);
+ assert.equal(Number(matching.score)-Number(blank.score),15);
+});
