@@ -8,3 +8,4 @@ coverage/
 .report-venv/
 evidence/http_progress.txt
 evidence/browser_failure.*
+.DS_Store

@@ -29,15 +29,13 @@ For an existing checkout, run `bash scripts/start-demo.sh` from the project fold
 
 ## Submission and presentation files
 
-- `docs/Campus_Lost_Found_Report.pdf`: complete project report with actual screenshots and test results.
+- [Final project report](docs/Campus_Lost_Found_Report.pdf): updated 23-page report.
+- [ER diagram](ER_Diagram.pdf).
+- [Relational schema](Relational_Schema.pdf).
 - `docs/Campus_Lost_Found_Presentation.pptx`: presentation with speaker notes.
 - `docs/PRESENTATION_AND_VIVA.md`: speaking guide, demo sequence, questions and troubleshooting.
 - `docs/TEAM_CONTRIBUTIONS.md`: component ownership and an honest individual-review record.
 - Repository: https://github.com/atul-suresh/campus-lost-found-dbms.
-
-## Publish the final source
-
-This repository contains the final application, report, presentation, screenshots and verification records. `PUBLISH_TO_GITHUB.command` can synchronize an extracted package using your own `atul-suresh` GitHub login. It validates package checksums, preserves repository history, accepts an already-published package and stops on conflicting later changes. Local configuration, dependencies and database data are excluded.
 
 ## Main workflow
 
